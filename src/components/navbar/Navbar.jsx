@@ -4,14 +4,17 @@ import { Button } from '@/components/ui/button';
 import { ModeToggle } from '../theme/mode-toggle';
 import { motion } from 'framer-motion';
 import logo from '../../assets/logo.svg';
+import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className='fixed top-0 left-0 z-50 w-full bg-background/80  backdrop-blur-md border-b border-1 border-gray-200 dark:border-white/20'
+      className='fixed top-0 left-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-1 border-gray-200 dark:border-white/20'
     >
       <div className='container flex h-16 items-center justify-between px-4 md:px-6'>
         <div className='flex items-center gap-5'>
@@ -29,7 +32,7 @@ const Navbar = () => {
           <div className='hidden md:flex gap-5 ml-2 pt-1'>
             <Link
               to='/'
-              className='hover:underline hover:underline-offset-4  text-sm dark:text-[#888888] font-medium text-gray-500'
+              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
             >
               Home
             </Link>
@@ -50,11 +53,29 @@ const Navbar = () => {
         <nav className='hidden gap-6 text-sm font-medium md:flex items-center'>
           <Button variant='outline'>Learn more</Button>
           <ModeToggle />
-          <Link to='signup'>
-            <Button className='font-bold hover:bg-black hover:text-white'>
-              Sign up
-            </Button>
-          </Link>
+          {user ? (
+            <>
+              <span className='font-medium text-gray-700 dark:text-gray-300'>
+                Welcome, {user.name}
+              </span>
+              <Button variant='outline' onClick={logout} className='font-medium'>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to='/signin'>
+                <Button variant='primary' className='font-medium'>
+                  Sign in
+                </Button>
+              </Link>
+              <Link to='/signup'>
+                <Button className='font-medium'>
+                  Sign up
+                </Button>
+              </Link>
+            </>
+          )}
         </nav>
         <Sheet>
           <SheetTrigger asChild>
@@ -89,6 +110,20 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+              {user ? (
+                <Button variant='outline' onClick={logout} className='font-medium'>
+                  Logout
+                </Button>
+              ) : (
+                <>
+                  <Link to='/signin' className='hover:underline hover:underline-offset-4'>
+                    Sign in
+                  </Link>
+                  <Link to='/signup' className='hover:underline hover:underline-offset-4'>
+                    Sign up
+                  </Link>
+                </>
+              )}
             </div>
           </SheetContent>
         </Sheet>

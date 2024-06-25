@@ -1,4 +1,3 @@
-import Footer from '@/components/footer/Footer';
 import { BentoGridThirdDemo } from '@/components/grid-section/Bento';
 import { InfiniteMovingCardsDemo } from '@/components/testimonial/InfiniteMovingCardsDemo';
 import { Hero } from '@/components/hero/Hero';
@@ -9,7 +8,6 @@ const Home = () => {
       <Hero />
       <BentoGridThirdDemo />
       <InfiniteMovingCardsDemo />
-      <Footer />
     </div>
   );
 };

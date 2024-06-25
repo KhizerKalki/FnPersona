@@ -1,11 +1,13 @@
-import { Navigate } from 'react-router-dom';
-import { useAuth } from './AuthContext'; 
+/* eslint-disable react/prop-types */
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './AuthContext';  
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { user } = useAuth();
+  const location = useLocation();
 
-  if (!isAuthenticated()) {
-    return <Navigate to="/signin" />;
+  if (!user) {
+    return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
   return children;

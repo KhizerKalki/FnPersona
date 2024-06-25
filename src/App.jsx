@@ -13,7 +13,8 @@ import Preloader from './components/loader/Preloader';
 import SignUp from './routes/SignUp';
 import ProtectedRoute from './context/ProtectedRoute';
 import Dashboard from './routes/Dashboard';
-import SignIn from './routes/SignIn';
+import SignIn from './routes/Login';
+import { AuthProvider } from '@/context/AuthContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,13 +24,13 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route
-              path="dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </Route>
   )
@@ -57,7 +58,11 @@ const App = () => {
         <AnimatePresence mode='wait'>
           {isLoading && <Preloader />}
         </AnimatePresence>
-        {!isLoading && <RouterProvider router={router} />}
+        {!isLoading && (
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
+        )}
       </div>
     </ThemeProvider>
   );
