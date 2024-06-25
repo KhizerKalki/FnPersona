@@ -1,8 +1,11 @@
-import Section from "@/components/section/Section"
+import { SigninFormDemo } from "@/components/form/SigninFormDemo"
+
 
 const SignIn = () => {
   return (
-    <Section>SignIn</Section>
+    <div>
+    <SigninFormDemo/>
+  </div>
   )
 }
 export default SignIn
