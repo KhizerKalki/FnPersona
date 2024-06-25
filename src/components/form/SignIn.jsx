@@ -64,15 +64,15 @@ export function SignIn() {
     const isPasswordValid = validatePassword(password);
     if (isEmailValid && isPasswordValid) {
       setLoading(true);
-      login({ email }); // Mock login, replace with actual login logic
+      login({ email }); 
       handleNavigate();
     }
   };
 
   return (
     <div className='w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]'>
-      <div className='flex items-center justify-center py-12'>
-        <form className='mx-auto grid w-[350px] gap-6' onSubmit={handleSubmit}>
+      <div className='flex items-center justify-center py-12 '>
+        <form className='mx-auto grid w-[350px] gap-6 ' onSubmit={handleSubmit}>
           <div className='grid gap-2 text-center'>
             <h1 className='text-3xl font-semibold'>Login</h1>
             <p className='text-balance text-muted-foreground'>
