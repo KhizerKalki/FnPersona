@@ -1,8 +1,10 @@
-import Section from "@/components/section/Section"
+import DashboardComponent from "@/components/Dashboard/DashboardComponent"
 
 const Dashboard = () => {
   return (
-    <Section>Dashboard</Section>
+    <div>
+      <DashboardComponent/>
+    </div>
   )
 }
 export default Dashboard
