@@ -8,6 +8,7 @@ export default function RootLayout() {
         <Navbar />
       </nav>
       <div>
+    
         <Outlet />
       </div>
       <footer>

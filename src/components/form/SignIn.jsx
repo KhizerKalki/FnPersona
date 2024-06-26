@@ -7,6 +7,10 @@ import { GoogleLogin } from '@react-oauth/google';
 import {jwtDecode} from 'jwt-decode';
 import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../loader/Loader';
+import { useToast } from "@/components/ui/use-toast"
+import { Button } from '../ui/button';
+import { ToastAction } from '../ui/toast';
 
 export function SignIn() {
   const [email, setEmail] = useState('');
@@ -14,6 +18,7 @@ export function SignIn() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast()
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -43,6 +48,12 @@ export function SignIn() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setEmailError('Please enter a valid email address.');
+      toast({
+        variant: "destructive",
+        title: "Invalid Email ",
+        description: "Please enter a valid email address.",
+
+      })
       return false;
     }
     setEmailError('');
@@ -51,6 +62,12 @@ export function SignIn() {
 
   const validatePassword = (password) => {
     if (password.length < 6) {
+      toast({
+        variant: "destructive",
+        title: "Invalid Password",
+        description: "Password must be at least 6 characters long.",
+
+      })
       setPasswordError('Password must be at least 6 characters long.');
       return false;
     }
@@ -92,9 +109,10 @@ export function SignIn() {
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={() => validateEmail(email)}
                 />
-                {emailError && (
-                  <p className='text-red-500 text-sm'>{emailError}</p>
-                )}
+                {/* {emailError && (
+                  <p className='text-red-500 text-sm' 
+                  >{emailError}</p>
+                )} */}
               </LabelInputContainer>
             </div>
             <div className='grid gap-2'>
@@ -115,11 +133,11 @@ export function SignIn() {
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={() => validatePassword(password)}
               />
-              {passwordError && (
+              {/* {passwordError && (
                 <p className='text-red-500 text-sm'>{passwordError}</p>
-              )}
+              )} */}
             </div>
-            {loading && <p> loading </p>}
+            {loading && <Loader />}
             <button type='submit' className='bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]'>
               Login
               <BottomGradient />
