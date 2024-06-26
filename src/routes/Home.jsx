@@ -1,6 +1,7 @@
 import { BentoGridThirdDemo } from '@/components/grid-section/Bento';
 import { InfiniteMovingCardsDemo } from '@/components/testimonial/InfiniteMovingCardsDemo';
 import { Hero } from '@/components/hero/Hero';
+import HeroHighlightDemo from '@/components/hero/HeroHighlightDemo';
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Hero />
       <BentoGridThirdDemo />
       <InfiniteMovingCardsDemo />
+      <HeroHighlightDemo />
     </div>
   );
 };

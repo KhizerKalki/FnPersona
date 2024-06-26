@@ -16,6 +16,7 @@ import Dashboard from './routes/Dashboard';
 import SignIn from './routes/Login';
 import { AuthProvider } from '@/context/AuthContext';
 import { Toaster } from './components/ui/toaster';
+import useScrollToTop from './utils/useScrollToTop';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
