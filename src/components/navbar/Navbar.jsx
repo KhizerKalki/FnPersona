@@ -5,6 +5,17 @@ import { ModeToggle } from '../theme/mode-toggle';
 import { motion } from 'framer-motion';
 import logo from '../../assets/logo.svg';
 import { useAuth } from '@/context/AuthContext';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -58,9 +69,25 @@ const Navbar = () => {
               <span className='font-medium text-gray-700 dark:text-gray-300'>
                 Welcome, {user.name}
               </span>
-              <Button variant='outline' onClick={logout} className='font-medium'>
-                Logout
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant='outline' className='font-medium'>
+                    Logout
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action will log you out of your account.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className='text-white'>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={logout}>Logout</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </>
           ) : (
             <>
@@ -111,9 +138,25 @@ const Navbar = () => {
                 Contact
               </Link>
               {user ? (
-                <Button variant='outline' onClick={logout} className='font-medium'>
-                  Logout
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant='outline' className='font-medium'>
+                      Logout
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action will log you out of your account.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={logout}>Logout</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               ) : (
                 <>
                   <Link to='/signin' className='hover:underline hover:underline-offset-4'>

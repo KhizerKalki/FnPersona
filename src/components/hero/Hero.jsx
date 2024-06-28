@@ -7,6 +7,7 @@ import { TypewriterEffectSmooth } from '@/utils/typewriter-effect';
 import { FaArrowRight } from 'react-icons/fa';
 import Parallax from 'parallax-js';
 import { MouseParallax } from 'react-just-parallax';
+import { Link } from 'react-router-dom';
 
 const Spotlight = ({ className, fill }) => {
   return (
@@ -191,9 +192,11 @@ const words = ['Get\u00A0Started', 'Join\u00A0us\u00A0Now', 'Try\u00A0Now'];
 
 export const HeroButton = () => {
   return (
-    <button className='inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-neutral-600 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 focus:ring-offset-neutral-50'>
-      <FlipWords words={words} />
-    </button>
+    <Link to='signup'>
+      <button className='inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-neutral-600 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 focus:ring-offset-neutral-50'>
+        <FlipWords words={words} />
+      </button>
+    </Link>
   );
 };
 

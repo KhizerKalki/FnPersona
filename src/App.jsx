@@ -15,16 +15,18 @@ import ProtectedRoute from './context/ProtectedRoute';
 import Dashboard from './routes/Dashboard';
 import SignIn from './routes/Login';
 import { AuthProvider } from '@/context/AuthContext';
+import { Toaster } from './components/ui/toaster';
+import useScrollToTop from './utils/useScrollToTop';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
-        <Route path="signin" element={<SignIn />} />
+        <Route path='signin' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route
-          path="dashboard"
+          path='dashboard'
           element={
             <ProtectedRoute>
               <Dashboard />
@@ -60,6 +62,7 @@ const App = () => {
         </AnimatePresence>
         {!isLoading && (
           <AuthProvider>
+            <Toaster />
             <RouterProvider router={router} />
           </AuthProvider>
         )}
