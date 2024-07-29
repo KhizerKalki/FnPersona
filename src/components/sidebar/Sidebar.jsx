@@ -112,18 +112,37 @@ function Sidebar() {
             <TooltipContent side='right'>Recurring Expenses</TooltipContent>
           </Tooltip>
 
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <NavLink
-                to='/dashboard/goal'
-                className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
-              >
-                <GoalIcon className='h-5 w-5 activebutton' />
-                <span className='sr-only'>Goal</span>
-              </NavLink>
-            </TooltipTrigger>
-            <TooltipContent side='right'>Goal</TooltipContent>
-          </Tooltip>
+          <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <NavLink
+                  to='/dashboard/goal'
+                  className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
+                >
+                  <GoalIcon className='h-5 w-5 activebutton' />
+                  <span className='sr-only'>Goal</span>
+                </NavLink>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className='w-56 ml-14 mt-[-35px]'>
+                <DropdownMenuGroup>
+                  <DropdownMenuItem asChild>
+                    <NavLink
+                      to='/dashboard/goal/addgoal'
+                      className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
+                    >
+                      Add Goal
+                    </NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <NavLink
+                      to='/dashboard/goal/overviewgoal'
+                      className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
+                    >
+                      Overview Goal
+                    </NavLink>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
           <Tooltip>
             <TooltipTrigger asChild>

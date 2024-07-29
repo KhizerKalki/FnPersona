@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Label } from '@/components/CustomInput/Label';
 import { Input } from '@/components/CustomInput/Input';
@@ -13,7 +13,6 @@ import { Button } from '../ui/button';
 import { ToastAction } from '../ui/toast';
 import Spline from '@splinetool/react-spline';
 
-
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +20,22 @@ export function SignIn() {
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          setIsDarkMode(htmlElement.classList.contains('dark'));
+        }
+      });
+    });
+
+    observer.observe(htmlElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -87,7 +102,10 @@ export function SignIn() {
   return (
     <div className='w-full flex flex-col lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]'>
       <div className='flex items-center justify-center py-12 w-full'>
-        <form className='mx-auto grid w-full max-w-[350px] gap-6 p-4' onSubmit={handleSubmit}>
+        <form
+          className='mx-auto grid w-full max-w-[350px] gap-6 p-4'
+          onSubmit={handleSubmit}
+        >
           <div className='grid gap-2 text-center'>
             <h1 className='text-3xl font-semibold'>Login</h1>
             <p className='text-balance text-muted-foreground'>
@@ -158,7 +176,11 @@ export function SignIn() {
           height='1080'
           className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
         /> */}
-        <Spline scene="https://prod.spline.design/IMsb91hYDQ9QlPmt/scene.splinecode" />
+        {isDarkMode ? (
+          <Spline scene='https://prod.spline.design/IMsb91hYDQ9QlPmt/scene.splinecode' />
+        ) : (
+          <Spline scene='https://prod.spline.design/6COyUnVpAyC-rpWw/scene.splinecode' />
+        )}
       </div>
     </div>
   );

@@ -26,6 +26,9 @@ import Transaction from './routes/dashboard/Transaction';
 import Firecalculator from './routes/dashboard/Firecalculator';
 import Overviews from './routes/dashboard/Overviews';
 import Addbudget from './routes/dashboard/Addbudget';
+import AddGoal from './routes/dashboard/AddGoal';
+import OverviewGoal from './routes/dashboard/OverviewGoal';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -48,7 +51,8 @@ const router = createBrowserRouter(
           <Route path='budget/overview' element={<Overviews />} />
           <Route path='budget/addbudget' element={<Addbudget />} />
           <Route path='transactions' element={<Transaction />} />
-          <Route path='goal' element={<Goals />} />
+          <Route path='goal/addgoal' element={<AddGoal />} />
+          <Route path='goal/overviewgoal' element={<OverviewGoal />} />
           <Route path='investments' element={<Investment />} />
           <Route path='recurring' element={<Recurring />} />
           <Route path='settings' element={<Settings />} />

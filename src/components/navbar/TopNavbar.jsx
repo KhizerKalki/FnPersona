@@ -124,13 +124,36 @@ function TopNavbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link
+                       <Link
               to="/dashboard/goal"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white"
             >
               <GoalIcon className="h-5 w-5" />
               Goal
             </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Link
+                  to='/dashboard/goal'
+                  className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white'
+                >
+                  <GoalIcon className='h-5 w-5' />
+                  Goals
+                </Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to='/dashboard/goal/addgoal'>
+                    Add Goal
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to='/dashboard/goal/overviewgoal'>
+                    Overview Goal
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               to="/dashboard/investments"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white"
