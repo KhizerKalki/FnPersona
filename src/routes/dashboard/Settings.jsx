@@ -441,6 +441,14 @@ const UserSettings = () => {
         </div>
         {sections.accountManagement && (
           <>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4">Email</label>
+              <input type="email" className="border p-1 text-black ml-9" />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4">Password</label>
+              <input type="password" className="border p-1 text-black" />
+            </div>
             <div className="flex items-center">
               <label className="mr-4">Two-Factor Authentication</label>
               <input
@@ -468,6 +476,10 @@ const UserSettings = () => {
         {sections.userProfile && (
           <>
             <div className="mb-4 flex items-center">
+              <label className="mr-4">Picture</label>
+              <input type="file" className="border p-1 text-white ml-6" />
+            </div>
+            <div className="mb-4 flex items-center">
               <label className="mr-4">Full Name</label>
               <input
                 type="text"
@@ -480,7 +492,7 @@ const UserSettings = () => {
               <label className="mr-4">Birthday</label>
               <input
                 type="date"
-                className="border p-1 text-black"
+                className="border p-1 text-black ml-3"
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
               />
