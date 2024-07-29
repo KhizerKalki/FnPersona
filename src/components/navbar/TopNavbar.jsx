@@ -105,13 +105,29 @@ function TopNavbar() {
               <Wallet className='h-5 w-5' />
               Net Worth
             </Link>
-            <Link
-              to='/dashboard/budget'
-              className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white'
-            >
-              <DollarSign className='h-5 w-5' />
-              Budget
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Link
+                  to='/dashboard/budget'
+                  className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white'
+                >
+                  <DollarSign className='h-5 w-5' />
+                  Budget
+                </Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link to='/dashboard/budget/addbudget'>
+                    Add Budget
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to='/dashboard/budget/overview'>
+                    Overview Budget
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               to='/dashboard/goal'
               className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white'
