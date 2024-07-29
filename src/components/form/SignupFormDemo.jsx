@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { format } from 'date-fns';
-import { toast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -25,7 +24,6 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import svg from '../../assets/placeholder.svg';
 import {
   Dialog,
   DialogContent,

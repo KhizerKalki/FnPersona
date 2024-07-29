@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Label } from '@/components/CustomInput/Label';
 import { Input } from '@/components/CustomInput/Input';
-import svg from '../../assets/placeholder.svg';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useToast } from '@/components/ui/use-toast';
-import { Button } from '../ui/button';
-import { ToastAction } from '../ui/toast';
 import Spline from '@splinetool/react-spline';
 
 export function SignIn() {
