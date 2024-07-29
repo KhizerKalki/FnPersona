@@ -20,22 +20,7 @@ export function SignIn() {
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          setIsDarkMode(htmlElement.classList.contains('dark'));
-        }
-      });
-    });
-
-    observer.observe(htmlElement, { attributes: true });
-
-    return () => observer.disconnect();
-  }, []);
+  
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -176,11 +161,9 @@ export function SignIn() {
           height='1080'
           className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
         /> */}
-        {isDarkMode ? (
-          <Spline scene='https://prod.spline.design/IMsb91hYDQ9QlPmt/scene.splinecode' />
-        ) : (
-          <Spline scene='https://prod.spline.design/6COyUnVpAyC-rpWw/scene.splinecode' />
-        )}
+       <Spline
+        scene="https://prod.spline.design/u5QTbeQqEBltnLMw/scene.splinecode" 
+      />
       </div>
     </div>
   );

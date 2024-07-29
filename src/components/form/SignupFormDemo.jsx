@@ -231,21 +231,6 @@ const TermsDialog = () => (
 
 export function SignupFormDemo() {
   const { login } = useAuth();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          setIsDarkMode(htmlElement.classList.contains('dark'));
-        }
-      });
-    });
-
-    observer.observe(htmlElement, { attributes: true });
-
-    return () => observer.disconnect();
-  }, []);
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -563,13 +548,7 @@ export function SignupFormDemo() {
             height='1080'
             className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
           /> */}
-        {isDarkMode ? (
-          <Spline scene='https://prod.spline.design/khbVxCRPxA2xpyPw/scene.splinecode' />
-        ) : (
-          <Spline scene='https://prod.spline.design/le43SGcQEUjwNGEl/scene.splinecode' />
-        )}
-  
-        </div>
+       <Spline scene="https://prod.spline.design/QIkOcY0wLbCc1aVB/scene.splinecode" />  </div>
       </div>
     </Section>
   );
