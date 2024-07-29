@@ -1,4 +1,5 @@
 ### User Registration and Profile Setup
+
 - **/register**
   - Email Sign-Up
   - Google Sign-In
@@ -8,6 +9,7 @@
   - Terms and Conditions/Privacy Policy
 
 ### Dashboard
+
 - **/dashboard**
   - **/dashboard/overview**
     - Net Worth Summary
@@ -32,6 +34,7 @@
       - Alerts for Budget Exceedances, Goal Milestones, Account Issues
 
 ### Linking Financial Accounts
+
 - **/link-accounts**
   - Plaid Link Button
   - List of Financial Institutions
@@ -39,6 +42,7 @@
   - Secure Authentication Process
 
 ### Initial Data Import and Categorization
+
 - **/transactions**
   - List of Transactions (Imported via Plaid)
   - Categorization Dropdowns
@@ -47,7 +51,9 @@
   - Bulk Edit Option
 
 ### Flexible Budgeting Tools
+
 - **/budget-setup**
+
   - Create New Budget
   - Budget Categories Input (Add/Edit/Delete Categories)
   - Set Limits for Each Category
@@ -61,6 +67,7 @@
   - Visualizations (Pie Charts, Bar Graphs)
 
 ### Recurring Expense Management
+
 - **/recurring-expenses**
   - Add Recurring Expense
   - Expense Details Input (Name, Amount, Frequency, Due Date)
@@ -70,7 +77,9 @@
   - Bill Splitting Option
 
 ### Goal Setting and Tracking
+
 - **/set-goals**
+
   - Add New Goal
   - Goal Details Input (Name, Target Amount, Deadline)
   - Progress Visualization (Progress Bar, Milestones)
@@ -84,7 +93,9 @@
   - Goal Impact Analysis (Net Worth Integration)
 
 ### FIRE (Financial Independence, Retire Early) Feature
+
 - **/fire-calculator**
+
   - Input Desired Lifestyle Expenses
   - Input Retirement Age
   - Calculate Projections
@@ -98,6 +109,7 @@
   - Notifications for Milestones
 
 ### Investment Tracking
+
 - **/investment-accounts**
   - Link Investment Accounts
   - List of Linked Investment Accounts
@@ -106,7 +118,9 @@
   - Investment Growth Projections
 
 ### Collaborative Financial Management (Partnership Feature)
+
 - **/manage-partnership**
+
   - Invite Partner
   - Partner Details Input (Name, Email)
   - Shared Financial Dashboard
@@ -121,7 +135,9 @@
   - Automated Expense Allocation
 
 ### Notifications and Alerts
+
 - **/notification-settings**
+
   - Email/Mobile Notification Preferences
   - Alert Types Selection (Budget, Goals, Account Issues)
   - Save Preferences
@@ -132,6 +148,7 @@
   - Delete Notifications
 
 ### Data Management and Security
+
 - **/data-management**
   - Data Export (CSV Format)
   - Data Deletion Options
@@ -139,10 +156,62 @@
   - Manage Linked Accounts (Plaid Integration)
 
 ### Settings and Preferences
-- **/user-settings**
-  - Display Preferences (Light/Dark Mode)
-  - Notification Settings
-  - Transaction Review Settings
-  - Save Settings
-  - Manage Subscription (If applicable)
+
+/user-settings
+
+- Display Preferences
+
+  - [ ] Light Mode
+  - [ ] Dark Mode
+  - Language: [Dropdown]
+
+- Notification Settings
+
+  - Email Notifications
+    - [ ] Enable Email Notifications
+    - Frequency: [Instant | Daily | Weekly]
+    - Types:
+      - [ ] Budget Alerts
+      - [ ] Goal Milestones
+      - [ ] Account Issues
+  - Mobile Notifications
+    - [ ] Enable Mobile Notifications
+    - Frequency: [Instant | Daily | Weekly]
+    - Types:
+      - [ ] Budget Alerts
+      - [ ] Goal Milestones
+      - [ ] Account Issues
+  - Push Notifications
+    - [ ] Enable Push Notifications
+    - Frequency: [Instant | Daily | Weekly]
+    - Types:
+      - [ ] Budget Alerts
+      - [ ] Goal Milestones
+      - [ ] Account Issues
+
+- Transaction Review Settings
+
+
+  - Notification Preferences:
+    - [ ] Notify for Unreviewed Transactions
+
+- Account Management
+
+  - Email: [Change Email]
+  - Password: [Change Password]
+  - Two-Factor Authentication: [Enable/Disable]
+
+
+- User Profile
+
+  - Profile Picture: [Update]
+  - Full Name: [Edit]
+  - Birthday: [Edit]
+  - Timezone: [Edit]
+  - Connected Accounts: [Manage]
+
+- Privacy Settings
+
+  - Data Sharing Preferences: [Enable/Disable]
+  - Review: [Terms and Conditions | Privacy Policy]
 
