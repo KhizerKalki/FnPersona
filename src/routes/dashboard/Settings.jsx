@@ -11,6 +11,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Update from '@/components/buttons/Update';
+import { Separator } from '@/components/ui/separator';
 
 const UserSettings = () => {
   const { setTheme, theme } = useTheme();
@@ -142,7 +143,8 @@ const UserSettings = () => {
           Settings and Preferences
         </h1>
         <p className='text-muted-foreground text-[13px] dark:text-white/50 animate-fadeIn'>
-        Customize your application settings and preferences to enhance your experience.
+          Customize your application settings and preferences to enhance your
+          experience.
         </p>
       </header>
       <div className='flex '>
@@ -159,7 +161,9 @@ const UserSettings = () => {
               <li
                 key={section}
                 className={`cursor-pointer py-2 px-4 rounded ${
-                  activeSection === section ? ' text-white font-medium' : 'text-white/30 '
+                  activeSection === section
+                    ? ' dark:text-white text-black font-medium'
+                    : 'dark:text-white/30 text-black/30 '
                 }`}
                 onClick={() => handleSectionChange(section)}
               >
@@ -172,38 +176,38 @@ const UserSettings = () => {
         <div className='flex-1 p-6'>
           {activeSection === 'Display Preferences' && (
             <section className={sectionStyles}>
-              <h2 className='text-xl font-semibold mb-6 dark:text-white'>
-                Display Preferences
-              </h2>
-              <div className='mb-4 flex items-center'>
-                <label className='mr-4 dark:text-white' htmlFor='light'>
-                  Light Mode
-                </label>
-                <Checkbox
-                  id='light'
-                  checked={theme === 'light'}
-                  onCheckedChange={() => setTheme('light')}
-                />
-              </div>
-              <div className='mb-4 flex items-center'>
-                <label className='mr-4 dark:text-white' htmlFor='dark'>
-                  Dark Mode
-                </label>
-                <Checkbox
-                  id='dark'
-                  checked={theme === 'dark'}
-                  onCheckedChange={() => setTheme('dark')}
-                />
-              </div>
-              <div className='mb-4 flex items-center'>
-                <label className='mr-4 dark:text-white' htmlFor='system'>
-                  System
-                </label>
-                <Checkbox
-                  id='system'
-                  checked={theme === 'system'}
-                  onCheckedChange={() => setTheme('system')}
-                />
+              <div className='border-[#383838] dark:bg-black/20 border rounded mb-4'>
+                <div className='p-4'>
+                  <h2 className='text-md font-semibold dark:text-white mb-5'>
+                    Display Preferences
+                  </h2>
+                  <div className='mb-4'>
+                    <Select
+                      onValueChange={(value) => setTheme(value)}
+                      className='dark:bg-black '
+                    >
+                      <SelectTrigger className='w-[180px] dark:text-white border-white/20 text-[12px]'>
+                        <SelectValue
+                          placeholder='Theme'
+                          className='text-[12px]'
+                        />
+                      </SelectTrigger>
+                      <SelectContent className='dark:bg-[#141414] dark:text-white border-white/20'>
+                        <SelectItem value='light' className='text-[12px]'>
+                          Light
+                        </SelectItem>
+                        <SelectItem value='dark' className='text-[12px]'>
+                          Dark
+                        </SelectItem>
+                        <SelectItem value='system' className='text-[12px]'>
+                          System
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Separator />
+                <div className='text-[12px] p-2 my-2 dark:text-white/40'>Select your preferred display mode from the options</div>
               </div>
               <div className='flex items-center'>
                 <label className='mr-4 dark:text-white'>Language</label>
