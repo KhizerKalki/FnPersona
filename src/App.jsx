@@ -28,6 +28,7 @@ import Overviews from './routes/dashboard/Overviews';
 import Addbudget from './routes/dashboard/Addbudget';
 import AddGoal from './routes/dashboard/AddGoal';
 import OverviewGoal from './routes/dashboard/OverviewGoal';
+import Partnership from './routes/dashboard/Partnership';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
           <Route path='goal/overviewgoal' element={<OverviewGoal />} />
           <Route path='investments' element={<Investment />} />
           <Route path='recurring' element={<Recurring />} />
+          <Route path='partnership' element={<Partnership />} />
           <Route path='settings' element={<Settings />} />
           <Route path='retirement' element={<Firecalculator />} />
         </Route>
