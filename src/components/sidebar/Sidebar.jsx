@@ -170,7 +170,7 @@ function Sidebar() {
             <TooltipContent side='right'>Investments</TooltipContent>
           </Tooltip>
 
-          <Tooltip>
+          {/* <Tooltip>
             <TooltipTrigger asChild>
               <NavLink
                 to='/dashboard/networth'
@@ -181,7 +181,7 @@ function Sidebar() {
               </NavLink>
             </TooltipTrigger>
             <TooltipContent side='right'>Net Worth</TooltipContent>
-          </Tooltip>
+          </Tooltip> */}
         </nav>
         <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-5'>
           <Tooltip>

@@ -215,3 +215,44 @@
   - Data Sharing Preferences: [Enable/Disable]
   - Review: [Terms and Conditions | Privacy Policy]
 
+- Shared Financial Settings 
+
+#### Main Content Area
+- **Section Title:** "Manage Partnership"
+
+##### Invite Partner Section
+- **Title:** "Invite a Partner"
+- **Invite Partner Form:**
+  - **Partner's Name:** Input field (Placeholder: "Enter partner's name")
+  - **Partner's Email:** Input field (Placeholder: "Enter partner's email")
+  - **Submit Button:** "Send Invitation" (Primary button)
+
+##### Shared Financial Dashboard Section
+- **Title:** "Shared Financial Dashboard"
+- **Overview:**
+  - **Total Shared Assets:** Display with label and amount.
+  - **Total Shared Liabilities:** Display with label and amount.
+- **Individual Contributions:**
+  - **Partner A:** Bar graph or pie chart showing individual contributions.
+  - **Partner B:** Bar graph or pie chart showing individual contributions.
+
+##### Advanced Privacy Controls Section
+- **Title:** "Advanced Privacy Controls"
+- **Access Level:**
+  - **Dropdown Menu:** Options like "View-Only," "Edit Permissions," "Full Access."
+- **Data Sharing Preferences:**
+  - **Checkboxes:** Options for selecting what data to share (e.g., Transactions, Budget, Goals).
+
+##### Conflict Resolution Tools Section
+- **Title:** "Conflict Resolution Tools"
+- **Communication Portal:**
+  - **Text Area:** For messaging partner within the app (Placeholder: "Type your message here...")
+  - **Send Button:** "Send Message" (Secondary button)
+- **Mediation Tools:**
+  - **Guidelines List:** Steps for resolving conflicts (e.g., "Step 1: Identify the Issue," "Step 2: Discuss with Partner," etc.)
+
+#### Footer
+- **Legal Links:** Terms and Conditions, Privacy Policy.
+- **Support Links:** Contact Support, FAQ.
+
+
