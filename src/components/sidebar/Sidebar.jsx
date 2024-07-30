@@ -8,6 +8,7 @@ import {
   Calendar,
   BriefcaseBusinessIcon,
   Calculator,
+  UsersIcon,
 } from 'lucide-react';
 import {
   Tooltip,
@@ -169,6 +170,19 @@ function Sidebar() {
             </TooltipTrigger>
             <TooltipContent side='right'>Investments</TooltipContent>
           </Tooltip>
+
+          <Tooltip>
+  <TooltipTrigger asChild>
+    <NavLink
+      to='/dashboard/partnership'
+      className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
+    >
+      <UsersIcon className='h-5 w-5 activebutton' /> {/* Replace with the correct icon */}
+      <span className='sr-only'>Retirement Planner</span>
+    </NavLink>
+  </TooltipTrigger>
+  <TooltipContent side='right'>Retirement Planner</TooltipContent>
+</Tooltip>
 
           {/* <Tooltip>
             <TooltipTrigger asChild>
