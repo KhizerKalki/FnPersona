@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/components/theme/theme-provider";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const UserSettings = () => {
-  const { setTheme } = useTheme();
-  const [mode, setMode] = useState(localStorage.getItem("mode") || "light");
-  setTheme(mode);
+  const { setTheme, theme } = useTheme();
   const [language, setLanguage] = useState(
     localStorage.getItem("language") || "English"
   );
@@ -51,6 +59,7 @@ const UserSettings = () => {
       accountIssues: false,
     }
   );
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const [notifyUnreviewedTransactions, setNotifyUnreviewedTransactions] =
     useState(
@@ -82,7 +91,7 @@ const UserSettings = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("mode", mode);
+    localStorage.setItem("theme", theme);
     localStorage.setItem("language", language);
     localStorage.setItem(
       "emailNotifications",
@@ -112,7 +121,7 @@ const UserSettings = () => {
     localStorage.setItem("timezone", timezone);
     localStorage.setItem("dataSharing", JSON.stringify(dataSharing));
   }, [
-    mode,
+    theme,
     language,
     emailNotifications,
     emailFrequency,
@@ -134,11 +143,17 @@ const UserSettings = () => {
   const toggleSection = (section) => {
     setSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
+  const isSystemTheme = theme === "system";
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 
   return (
     <div
       className={`min-h-screen p-6 ${
-        mode === "dark" ? "bg-black text-white" : "bg-white text-black"
+        theme === "dark" || (isSystemTheme && systemTheme === "dark")
+          ? "bg-black text-white"
+          : "bg-white text-black"
       }`}
     >
       <h1 className="text-2xl font-bold mb-6">Settings and Preferences</h1>
@@ -158,32 +173,88 @@ const UserSettings = () => {
         {sections.displayPreferences && (
           <>
             <div className="mb-4 flex items-center">
-              <label className="mr-4">Light Mode</label>
-              <input
-                type="checkbox"
-                checked={mode === "light"}
-                onChange={() => setMode("light")}
+              <label className="mr-4" htmlFor="light">
+                Light Mode
+              </label>
+              <Checkbox
+                id="light"
+                checked={theme === "light"}
+                onCheckedChange={() => setTheme("light")}
               />
             </div>
             <div className="mb-4 flex items-center">
-              <label className="mr-4">Dark Mode</label>
-              <input
-                type="checkbox"
-                checked={mode === "dark"}
-                onChange={() => setMode("dark")}
+              <label className="mr-4" htmlFor="dark">
+                Dark Mode
+              </label>
+              <Checkbox
+                id="dark"
+                checked={theme === "dark"}
+                onCheckedChange={() => setTheme("dark")}
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4" htmlFor="system">
+                System
+              </label>
+              <Checkbox
+                id="system"
+                checked={theme === "system"}
+                onCheckedChange={() => setTheme("system")}
               />
             </div>
             <div className="flex items-center">
               <label className="mr-4">Language</label>
-              <select
+              <Select
                 className="border p-1 text-black"
                 value={language}
-                onChange={(e) => setLanguage(e.target.value)}
+                onValueChange={(value) => setLanguage(value)}
               >
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Language" />
+                </SelectTrigger>
+                <SelectContent className="w-32">
+                  <SelectItem
+                    value="English"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    English
+                  </SelectItem>
+                  <SelectItem
+                    value="Chinese"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    Chinese
+                  </SelectItem>
+                  <SelectItem
+                    value="Spanish"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    Spanish
+                  </SelectItem>
+                  <SelectItem
+                    value="German"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    German
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </>
         )}
@@ -209,30 +280,74 @@ const UserSettings = () => {
               </h3>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Enable Email Notifications</label>
-                <input
+                <Checkbox
                   type="checkbox"
                   checked={emailNotifications}
-                  onChange={() => setEmailNotifications(!emailNotifications)}
+                  onCheckedChange={() =>
+                    setEmailNotifications(!emailNotifications)
+                  }
                 />
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Frequency</label>
-                <select
+                <Select
                   className="border p-1 text-black"
                   value={emailFrequency}
-                  onChange={(e) => setEmailFrequency(e.target.value)}
+                  onValueChange={(value) => setEmailFrequency(value)}
                 >
-                  <option>Instant</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                </select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Frequency" />
+                  </SelectTrigger>
+                  <SelectContent className="w-32">
+                    <SelectItem
+                      value="Instant"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Instant
+                    </SelectItem>
+                    <SelectItem
+                      value="Daily"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Daily
+                    </SelectItem>
+                    <SelectItem
+                      value="Weekly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Weekly
+                    </SelectItem>
+                    <SelectItem
+                      value="Monthly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Monthly
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Budget Alerts</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="budgetAlertsEmail"
                   checked={emailAlerts.budgetAlerts}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setEmailAlerts((prev) => ({
                       ...prev,
                       budgetAlerts: !prev.budgetAlerts,
@@ -242,10 +357,10 @@ const UserSettings = () => {
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Goal Milestones</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="goalMilestonesEmail"
                   checked={emailAlerts.goalMilestones}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setEmailAlerts((prev) => ({
                       ...prev,
                       goalMilestones: !prev.goalMilestones,
@@ -255,10 +370,10 @@ const UserSettings = () => {
               </div>
               <div className="flex items-center">
                 <label className="mr-4">Account Issues</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="accountIssuesEmail"
                   checked={emailAlerts.accountIssues}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setEmailAlerts((prev) => ({
                       ...prev,
                       accountIssues: !prev.accountIssues,
@@ -274,30 +389,74 @@ const UserSettings = () => {
               </h3>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Enable Mobile Notifications</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="mobileNotifications"
                   checked={mobileNotifications}
-                  onChange={() => setMobileNotifications(!mobileNotifications)}
+                  onCheckedChange={() =>
+                    setMobileNotifications(!mobileNotifications)
+                  }
                 />
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Frequency</label>
-                <select
+                <Select
                   className="border p-1 text-black"
                   value={mobileFrequency}
-                  onChange={(e) => setMobileFrequency(e.target.value)}
+                  onValueChange={(value) => setMobileFrequency(value)}
                 >
-                  <option>Instant</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                </select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Frequency" />
+                  </SelectTrigger>
+                  <SelectContent className="w-32">
+                    <SelectItem
+                      value="Instant"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Instant
+                    </SelectItem>
+                    <SelectItem
+                      value="Daily"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Daily
+                    </SelectItem>
+                    <SelectItem
+                      value="Weekly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Weekly
+                    </SelectItem>
+                    <SelectItem
+                      value="Monthly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Monthly
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Budget Alerts</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="budgetAlertsMobile"
                   checked={mobileAlerts.budgetAlerts}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setMobileAlerts((prev) => ({
                       ...prev,
                       budgetAlerts: !prev.budgetAlerts,
@@ -307,10 +466,10 @@ const UserSettings = () => {
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Goal Milestones</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="goalMilestonesMobile"
                   checked={mobileAlerts.goalMilestones}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setMobileAlerts((prev) => ({
                       ...prev,
                       goalMilestones: !prev.goalMilestones,
@@ -320,10 +479,10 @@ const UserSettings = () => {
               </div>
               <div className="flex items-center">
                 <label className="mr-4">Account Issues</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="accountIssuesMobile"
                   checked={mobileAlerts.accountIssues}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setMobileAlerts((prev) => ({
                       ...prev,
                       accountIssues: !prev.accountIssues,
@@ -337,30 +496,74 @@ const UserSettings = () => {
               <h3 className="text-lg font-semibold mb-2">Push Notifications</h3>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Enable Push Notifications</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="pushNotifications"
                   checked={pushNotifications}
-                  onChange={() => setPushNotifications(!pushNotifications)}
+                  onCheckedChange={() =>
+                    setPushNotifications(!pushNotifications)
+                  }
                 />
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Frequency</label>
-                <select
+                <Select
                   className="border p-1 text-black"
                   value={pushFrequency}
-                  onChange={(e) => setPushFrequency(e.target.value)}
+                  onValueChange={(value) => setPushFrequency(value)}
                 >
-                  <option>Instant</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                </select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Frequency" />
+                  </SelectTrigger>
+                  <SelectContent className="w-32">
+                    <SelectItem
+                      value="Instant"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Instant
+                    </SelectItem>
+                    <SelectItem
+                      value="Daily"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Daily
+                    </SelectItem>
+                    <SelectItem
+                      value="Weekly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Weekly
+                    </SelectItem>
+                    <SelectItem
+                      value="Monthly"
+                      className={`${
+                        theme === "dark"
+                          ? "text-white bg-black"
+                          : "text-black bg-white"
+                      }`}
+                    >
+                      Monthly
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Budget Alerts</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="budgetAlertsPush"
                   checked={pushAlerts.budgetAlerts}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setPushAlerts((prev) => ({
                       ...prev,
                       budgetAlerts: !prev.budgetAlerts,
@@ -370,10 +573,10 @@ const UserSettings = () => {
               </div>
               <div className="mb-4 flex items-center">
                 <label className="mr-4">Goal Milestones</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="goalMilestonesPush"
                   checked={pushAlerts.goalMilestones}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setPushAlerts((prev) => ({
                       ...prev,
                       goalMilestones: !prev.goalMilestones,
@@ -383,10 +586,10 @@ const UserSettings = () => {
               </div>
               <div className="flex items-center">
                 <label className="mr-4">Account Issues</label>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  id="accountIssuesPush"
                   checked={pushAlerts.accountIssues}
-                  onChange={() =>
+                  onCheckedChange={() =>
                     setPushAlerts((prev) => ({
                       ...prev,
                       accountIssues: !prev.accountIssues,
@@ -415,10 +618,10 @@ const UserSettings = () => {
           <>
             <div className="flex items-center">
               <label className="mr-4">Notify of Unreviewed Transactions</label>
-              <input
+              <Checkbox
                 type="checkbox"
                 checked={notifyUnreviewedTransactions}
-                onChange={() =>
+                onCheckedChange={() =>
                   setNotifyUnreviewedTransactions(!notifyUnreviewedTransactions)
                 }
               />
@@ -441,10 +644,52 @@ const UserSettings = () => {
         </div>
         {sections.accountManagement && (
           <>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4">Email</label>
+              <Input
+                type="email"
+                className={`border p-1 ${
+                  theme === "dark"
+                    ? "bg-black text-white border-white"
+                    : "bg-white text-black border-black"
+                } ml-9`}
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4">Password</label>
+              <div className="relative flex items-center">
+                <Input
+                  type={passwordVisible ? "text" : "password"}
+                  className={`border p-1 ${
+                    theme === "dark"
+                      ? "bg-black text-white border-white"
+                      : "bg-white text-black border-black"
+                  }`}
+                />
+                <button
+                  type="button"
+                  className="absolute right-2"
+                  onClick={() => setPasswordVisible(!passwordVisible)}
+                >
+                  {passwordVisible ? (
+                    <FaEyeSlash
+                      className={`h-5 w-5 ${
+                        theme === "dark" ? "text-white" : "text-black"
+                      }`}
+                    />
+                  ) : (
+                    <FaEye
+                      className={`h-5 w-5 ${
+                        theme === "dark" ? "text-white" : "text-black"
+                      }`}
+                    />
+                  )}
+                </button>
+              </div>
+            </div>
             <div className="flex items-center">
               <label className="mr-4">Two-Factor Authentication</label>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={twoFactorAuth}
                 onChange={() => setTwoFactorAuth(!twoFactorAuth)}
               />
@@ -468,34 +713,85 @@ const UserSettings = () => {
         {sections.userProfile && (
           <>
             <div className="mb-4 flex items-center">
-              <label className="mr-4">Full Name</label>
+              <label className="mr-4">Picture</label>
               <input
+                type="file"
+                className={`border p-1 ${
+                  theme === "dark"
+                    ? "bg-black text-white border-white"
+                    : "bg-white text-black border-black"
+                } ml-6`}
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label className="mr-4">Full Name</label>
+              <Input
                 type="text"
-                className="border p-1 text-black"
+                className={`border p-1 ${
+                  theme === "dark"
+                    ? "bg-black text-white border-white"
+                    : "bg-white text-black border-black"
+                }`}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
               />
             </div>
             <div className="mb-4 flex items-center">
               <label className="mr-4">Birthday</label>
-              <input
+              <Input
                 type="date"
-                className="border p-1 text-black"
+                className={`border p-1 ${
+                  theme === "dark"
+                    ? "bg-black text-white border-white"
+                    : "bg-white text-black border-black"
+                } ml-3`}
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
               />
             </div>
             <div className="flex items-center">
               <label className="mr-4">Timezone</label>
-              <select
+              <Select
                 className="border p-1 text-black"
                 value={timezone}
-                onChange={(e) => setTimezone(e.target.value)}
+                onValueChange={(value) => setTimezone(value)}
               >
-                <option value="IST">IST</option>
-                <option value="EST">EST</option>
-                <option value="PST">PST</option>
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Timezone" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem
+                    value="IST"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    IST
+                  </SelectItem>
+                  <SelectItem
+                    value="EST"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    EST
+                  </SelectItem>
+                  <SelectItem
+                    value="PST"
+                    className={`${
+                      theme === "dark"
+                        ? "text-white bg-black"
+                        : "text-black bg-white"
+                    }`}
+                  >
+                    PST
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </>
         )}
@@ -517,8 +813,7 @@ const UserSettings = () => {
           <>
             <div className="flex items-center">
               <label className="mr-4">Enable Data Sharing</label>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={dataSharing}
                 onChange={() => setDataSharing(!dataSharing)}
               />
@@ -529,7 +824,11 @@ const UserSettings = () => {
 
       <div className="flex justify-center">
         <button
-          className="px-4 py-2 bg-white text-black rounded"
+          className={`px-4 py-2 rounded ${
+            theme === "light"
+              ? "bg-white text-black border-black border"
+              : "bg-black text-white border-white border"
+          } `}
           onClick={() => alert("Settings Updated!")}
         >
           Update
