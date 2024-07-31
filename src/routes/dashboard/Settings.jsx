@@ -162,8 +162,8 @@ const UserSettings = () => {
                 key={section}
                 className={`cursor-pointer py-2 px-4 rounded ${
                   activeSection === section
-                    ? ' dark:text-white text-black font-medium'
-                    : 'dark:text-white/30 text-black/30 '
+                    ? ' dark:text-white text-black font-medium dark:hover:bg-black/50 hover:bg-gray-100'
+                    : 'dark:text-white/30 text-black/30 dark:hover:bg-black/50 hover:bg-gray-100'
                 }`}
                 onClick={() => handleSectionChange(section)}
               >
