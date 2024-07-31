@@ -297,7 +297,7 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="email-notifications"
-                      className="ml-2 dark:text-white"
+                      className="ml-2 dark:text-white text-sm"
                     >
                       Enable Email Notifications
                     </label>
@@ -310,7 +310,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize">
+                            <label className="mr-4 dark:text-white capitalize text-sm">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -376,7 +376,7 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="mobile-notifications"
-                      className="ml-2 dark:text-white"
+                      className="ml-2 dark:text-white text-sm"
                     >
                       Enable Mobile Notifications
                     </label>
@@ -389,7 +389,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize">
+                            <label className="mr-4 dark:text-white capitalize text-sm">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -455,7 +455,7 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="push-notifications"
-                      className="ml-2 dark:text-white"
+                      className="ml-2 dark:text-white text-sm"
                     >
                       Enable Push Notifications
                     </label>
@@ -468,7 +468,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize">
+                            <label className="mr-4 dark:text-white capitalize text-sm">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -512,7 +512,7 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="unreviewed-transactions"
-                      className="ml-2 dark:text-white"
+                      className="ml-2 dark:text-white text-sm"
                     >
                       Notify me of unreviewed transactions
                     </label>
