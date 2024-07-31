@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Pie, PieChart, Sector } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, Settings} from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -38,6 +38,19 @@ import {
   DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu";
 import { Label } from '@/components/ui/label';
+
+import { Minus, Plus } from "lucide-react";
+import { Bar, BarChart, ResponsiveContainer } from "recharts";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -100,17 +113,39 @@ const Partnership = () => {
       email: form.email.value,
     };
     setPartners([...partners, newPartner]);
-    handleClose();
+    setIsOpen(false);
   };
 
   const TextareaWithButton = () => {
     return (
-      <div className="grid w-full gap-2 ">
-        <Textarea placeholder="Type your message here." className='dark:text-white'/>
-        <Button>Send message</Button>
-      </div>
+      <>
+        <h1 className="dark:text-white ml-4 items-center justify-between mb-4 ">Message Partner</h1>
+        <div className="w-[50%] items-center justify-between p-2">
+          <Textarea placeholder="Type your message here." className="dark:text-white w-[430px] mb-6" />
+          <Button className="mr-[-200px] p-5">Send message</Button>
+        </div>
+      </>
     );
   };
+
+  const DrawerDemo = () => {
+    const [goal, setGoal] = React.useState(350);
+
+    function onClick(adjustment) {
+      setGoal(Math.max(200, Math.min(400, goal + adjustment)));
+    }
+
+    return (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline" className="dark:text-white">Message</Button>
+        </DrawerTrigger>
+        <DrawerContent className='w-[500px] ml-14'>
+          <TextareaWithButton />
+        </DrawerContent>
+      </Drawer>
+    );
+  }
 
   return (
     <>
@@ -142,7 +177,7 @@ const Partnership = () => {
                   <Input
                     id="email"
                     name="email"
-                    className="col-span-3"
+                    className="col-span-3 dark:text-white"
                     type="email"
                   />
                 </div>
@@ -154,10 +189,12 @@ const Partnership = () => {
             </form>
           </DialogContent>
         </Dialog>
-
+        <DrawerDemo />
         <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" className="dark:text-white">Advanced Privacy Controls</Button>
+            <Button variant="outline" className="dark:text-white">
+              <Settings className="h-4 w-4" />
+            </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
@@ -211,25 +248,8 @@ const Partnership = () => {
         </Dialog>
       </div>
 
-      {/* Overview Section */}
-      <div className="bg-black text-white p-4 rounded-lg mt-4">
-        <h2 className="text-xl font-bold mb-2">Overview</h2>
-        <div className="mb-4">
-          <div className="flex justify-between">
-            <div>
-              <Label>Total Shared Assets:</Label>
-              <p>$800.00</p>
-            </div>
-            <div>
-              <Label>Total Shared Liabilities:</Label>
-              <p>$200.00</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Individual Partner Sections */}
-      <div className="flex flex-wrap gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {partners.map((partner, index) => (
           <Card key={index}>
             <CardHeader className="flex justify-between items-center pb-0">
@@ -275,23 +295,7 @@ const Partnership = () => {
       </div>
 
       {/* TextareaWithButton Component */}
-
-      <div className="flex gap-4 mt-4 ">
-        
-        <div className="flex-1">
-          <TextareaWithButton/>
-        </div>
-        <div className="flex-1 bg-black text-white p-4 rounded-lg ">
-          <Label className='dark:text-white'>Guidelines List:</Label>
-          <ul className="list-disc pl-5 dark:text-white">
-            <li>Step 1: Identify the Issue</li>
-            <li>Step 2: Discuss with Partner</li>
-            <li>Step 3: Explore Solutions</li>
-            <li>Step 4: Agree on a Plan</li>
-            <li>Step 5: Follow Up</li>
-          </ul>
-        </div>
-      </div>
+      
     </>
   );
 };
