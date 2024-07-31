@@ -1,19 +1,9 @@
-import { useTheme } from "../theme/theme-provider";
+import { Button } from '../ui/button';
 
 function Update() {
-  const { theme } = useTheme();
   return (
-    <div className="flex justify-center mt-5">
-      <button
-        className={`px-4 py-2 rounded ${
-          theme === "light"
-            ? "bg-white text-black border-black border"
-            : "bg-black text-white border-white border"
-        } `}
-        onClick={() => alert("Settings Updated!")}
-      >
-        Update
-      </button>
+    <div className='flex justify-end w-full mt-5'>
+      <Button onClick={() => alert('Settings Updated!')}>Update</Button>
     </div>
   );
 }

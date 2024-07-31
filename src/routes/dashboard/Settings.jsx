@@ -134,7 +134,7 @@ const UserSettings = () => {
   };
 
   const sectionStyles =
-    'mb-6 pb-4 border-b border-gray-300 dark:border-gray-700';
+    'mb-6 pb-4';
 
   return (
     <div className='min-h-screen p-6 '>
@@ -176,7 +176,7 @@ const UserSettings = () => {
         <div className='flex-1 p-6'>
           {activeSection === 'Display Preferences' && (
             <section className={sectionStyles}>
-              <div className='border-[#383838] dark:bg-black/20 border rounded mb-4'>
+              <div className='dark:border-[#383838]  dark:bg-black/40 border rounded mb-4'>
                 <div className='p-4'>
                   <h2 className='text-md font-semibold dark:text-white mb-5'>
                     Display Preferences
@@ -186,13 +186,13 @@ const UserSettings = () => {
                       onValueChange={(value) => setTheme(value)}
                       className='dark:bg-black '
                     >
-                      <SelectTrigger className='w-[180px] dark:text-white border-white/20 text-[12px]'>
+                      <SelectTrigger className='w-[180px]  dark:text-white dark:border-white/20 text-[12px]'>
                         <SelectValue
                           placeholder='Theme'
                           className='text-[12px]'
                         />
                       </SelectTrigger>
-                      <SelectContent className='dark:bg-[#141414] dark:text-white border-white/20'>
+                      <SelectContent className='dark:bg-[#141414] bg-white dark:text-white border-white/20'>
                         <SelectItem value='light' className='text-[12px]'>
                           Light
                         </SelectItem>
@@ -207,33 +207,47 @@ const UserSettings = () => {
                   </div>
                 </div>
                 <Separator />
-                <div className='text-[12px] p-2 my-2 dark:text-white/40'>Select your preferred display mode from the options</div>
+                <div className='text-[13px] p-2 py-4 dark:bg-black/50 bg-gray-100 dark:text-white/40'>
+                  Select your preferred display mode from the options
+                </div>
               </div>
-              <div className='flex items-center'>
-                <label className='mr-4 dark:text-white'>Language</label>
-                <Select
-                  className='border p-1 dark:bg-black dark:text-white'
-                  value={language}
-                  onValueChange={(value) => setLanguage(value)}
-                >
-                  <SelectTrigger className='dark:text-white'>
-                    <SelectValue
-                      placeholder='Select Language'
-                      className='dark:text-white'
-                    />
-                  </SelectTrigger>
-                  <SelectContent className='w-32 dark:bg-black dark:text-white'>
-                    {['English', 'Chinese', 'Spanish', 'German'].map((lang) => (
-                      <SelectItem
-                        key={lang}
-                        value={lang}
-                        className='dark:text-white'
-                      >
-                        {lang}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className='dark:border-[#383838] dark:bg-black/40 border rounded mb-4'>
+                <div className='p-4'>
+                  <h2 className='text-md font-semibold dark:text-white mb-5'>
+                    Language selection
+                  </h2>
+                  <div className='mb-4'>
+                    <Select
+                      className='border p-1 dark:bg-black dark:text-white'
+                      value={language}
+                      onValueChange={(value) => setLanguage(value)}
+                    >
+                      <SelectTrigger className='w-[180px]  dark:text-white dark:border-white/20 border-black/30 border-2 text-[12px]'>
+                        <SelectValue
+                          placeholder='Select Language'
+                          className='dark:text-white'
+                        />
+                      </SelectTrigger>
+                      <SelectContent className='dark:bg-[#141414] bg-white dark:text-white border-white/20'>
+                        {['English', 'Chinese', 'Spanish', 'German'].map(
+                          (lang) => (
+                            <SelectItem
+                              key={lang}
+                              value={lang}
+                              className='dark:text-white'
+                            >
+                              {lang}
+                            </SelectItem>
+                          )
+                        )}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Separator />
+                <div className='text-[13px] p-2 py-4 dark:bg-black/50 bg-gray-100 dark:text-white/40'>
+                Select your preferred language from the options
+                </div>
               </div>
               <Update />
             </section>
