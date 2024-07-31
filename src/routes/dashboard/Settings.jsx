@@ -597,7 +597,7 @@ const UserSettings = () => {
                       <label className="mr-4 dark:text-white">Picture</label>
                       <input
                         type="file"
-                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-6 w-full md:w-64"
+                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-6 w-full md:w-64 text-sm"
                       />
                     </div>
                     <div className="flex flex-col md:flex-row items-center">
@@ -613,7 +613,7 @@ const UserSettings = () => {
                       <label className="mr-4 dark:text-white">Birthday</label>
                       <Input
                         type="date"
-                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-3 w-full md:w-35"
+                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-3 w-fit pl-5  justify-center md:w-35"
                         value={birthday}
                         onChange={(e) => setBirthday(e.target.value)}
                       />
