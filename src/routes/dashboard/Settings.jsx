@@ -257,38 +257,9 @@ const UserSettings = () => {
             <section className={sectionStyles}>
               <div className="dark:border-[#383838] dark:bg-black/40 border rounded mb-4">
                 <div className="p-4">
-                  <div className="flex justify-between items-center">
-                    <h2 className="text-md font-semibold dark:text-white mb-5">
-                      Email Notifications
-                    </h2>
-                    {emailNotifications && (
-                      <div className="mb-4 flex items-center ">
-                        <Select
-                          className="border p-1 dark:bg-black dark:text-white"
-                          value={emailFrequency}
-                          onValueChange={(value) => setEmailFrequency(value)}
-                        >
-                          <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
-                            <SelectValue
-                              placeholder="Frequency"
-                              className="dark:text-white"
-                            />
-                          </SelectTrigger>
-                          <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
-                            {["Instant", "Daily", "Weekly"].map((freq) => (
-                              <SelectItem
-                                key={freq}
-                                value={freq}
-                                className="dark:text-white text-[12px]"
-                              >
-                                {freq}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                  </div>
+                  <h2 className="text-md font-semibold dark:text-white mb-5">
+                    Email Notifications
+                  </h2>
                   <div className="mb-4 flex items-center">
                     <Checkbox
                       checked={emailNotifications}
@@ -297,12 +268,38 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="email-notifications"
-                      className="ml-2 dark:text-white text-sm flex items-center"
+                      className="ml-2 dark:text-white"
                     >
                       Enable Email Notifications
                     </label>
                   </div>
-                
+                  {emailNotifications && (
+                    <div className="mb-4">
+                      <Select
+                        className="border p-1 dark:bg-black dark:text-white"
+                        value={emailFrequency}
+                        onValueChange={(value) => setEmailFrequency(value)}
+                      >
+                        <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
+                          <SelectValue
+                            placeholder="Frequency"
+                            className="dark:text-white"
+                          />
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
+                          {["Instant", "Daily", "Weekly"].map((freq) => (
+                            <SelectItem
+                              key={freq}
+                              value={freq}
+                              className="dark:text-white text-[12px]"
+                            >
+                              {freq}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                   {emailNotifications && (
                     <div className="mb-4">
                       <h4 className="text-md font-semibold mb-2 dark:text-white">
@@ -311,7 +308,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize text-sm">
+                            <label className="mr-4 dark:text-white capitalize">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -337,38 +334,49 @@ const UserSettings = () => {
 
               <div className="dark:border-[#383838] dark:bg-black/40 border rounded mb-4">
                 <div className="p-4">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-md font-semibold dark:text-white mb-5">
-                      Email Notifications
-                    </h2>
-                    {emailNotifications && (
-                      <div className="mb-4 flex items-center ">
-                        <Select
-                          className="border p-1 dark:bg-black dark:text-white"
-                          value={emailFrequency}
-                          onValueChange={(value) => setEmailFrequency(value)}
-                        >
-                          <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
-                            <SelectValue
-                              placeholder="Frequency"
-                              className="dark:text-white"
-                            />
-                          </SelectTrigger>
-                          <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
-                            {["Instant", "Daily", "Weekly"].map((freq) => (
-                              <SelectItem
-                                key={freq}
-                                value={freq}
-                                className="dark:text-white text-[12px]"
-                              >
-                                {freq}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
+                  <h2 className="text-md font-semibold dark:text-white mb-5">
+                    Mobile Notifications
+                  </h2>
+                  <div className="mb-4 flex items-center">
+                    <Checkbox
+                      checked={mobileNotifications}
+                      onCheckedChange={(value) => setMobileNotifications(value)}
+                      id="mobile-notifications"
+                    />
+                    <label
+                      htmlFor="mobile-notifications"
+                      className="ml-2 dark:text-white"
+                    >
+                      Enable Mobile Notifications
+                    </label>
                   </div>
+                  {mobileNotifications && (
+                    <div className="mb-4">
+                      <Select
+                        className="border p-1 dark:bg-black dark:text-white"
+                        value={mobileFrequency}
+                        onValueChange={(value) => setMobileFrequency(value)}
+                      >
+                        <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
+                          <SelectValue
+                            placeholder="Frequency"
+                            className="dark:text-white"
+                          />
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
+                          {["Instant", "Daily", "Weekly"].map((freq) => (
+                            <SelectItem
+                              key={freq}
+                              value={freq}
+                              className="dark:text-white text-[12px]"
+                            >
+                              {freq}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                   {mobileNotifications && (
                     <div className="mb-4">
                       <h4 className="text-md font-semibold mb-2 dark:text-white">
@@ -377,7 +385,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize text-sm">
+                            <label className="mr-4 dark:text-white capitalize">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -403,38 +411,49 @@ const UserSettings = () => {
 
               <div className="dark:border-[#383838] dark:bg-black/40 border rounded mb-4">
                 <div className="p-4">
-                <div className="flex justify-between items-center">
-                    <h2 className="text-md font-semibold dark:text-white mb-5">
-                      Email Notifications
-                    </h2>
-                    {emailNotifications && (
-                      <div className="mb-4 flex items-center ">
-                        <Select
-                          className="border p-1 dark:bg-black dark:text-white"
-                          value={emailFrequency}
-                          onValueChange={(value) => setEmailFrequency(value)}
-                        >
-                          <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
-                            <SelectValue
-                              placeholder="Frequency"
-                              className="dark:text-white"
-                            />
-                          </SelectTrigger>
-                          <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
-                            {["Instant", "Daily", "Weekly"].map((freq) => (
-                              <SelectItem
-                                key={freq}
-                                value={freq}
-                                className="dark:text-white text-[12px]"
-                              >
-                                {freq}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
+                  <h2 className="text-md font-semibold dark:text-white mb-5">
+                    Push Notifications
+                  </h2>
+                  <div className="mb-4 flex items-center">
+                    <Checkbox
+                      checked={pushNotifications}
+                      onCheckedChange={(value) => setPushNotifications(value)}
+                      id="push-notifications"
+                    />
+                    <label
+                      htmlFor="push-notifications"
+                      className="ml-2 dark:text-white"
+                    >
+                      Enable Push Notifications
+                    </label>
                   </div>
+                  {pushNotifications && (
+                    <div className="mb-4">
+                      <Select
+                        className="border p-1 dark:bg-black dark:text-white"
+                        value={pushFrequency}
+                        onValueChange={(value) => setPushFrequency(value)}
+                      >
+                        <SelectTrigger className="w-[180px] dark:text-white dark:border-white/20 text-[12px]">
+                          <SelectValue
+                            placeholder="Frequency"
+                            className="dark:text-white"
+                          />
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-[#141414] bg-white dark:text-white border-white/20">
+                          {["Instant", "Daily", "Weekly"].map((freq) => (
+                            <SelectItem
+                              key={freq}
+                              value={freq}
+                              className="dark:text-white text-[12px]"
+                            >
+                              {freq}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                   {pushNotifications && (
                     <div className="mb-4">
                       <h4 className="text-md font-semibold mb-2 dark:text-white">
@@ -443,7 +462,7 @@ const UserSettings = () => {
                       {["budgetAlerts", "goalMilestones", "accountIssues"].map(
                         (alert) => (
                           <div key={alert} className="mb-2 flex items-center">
-                            <label className="mr-4 dark:text-white capitalize text-sm">
+                            <label className="mr-4 dark:text-white capitalize">
                               {alert.replace(/([A-Z])/g, " $1").trim()}
                             </label>
                             <Checkbox
@@ -477,7 +496,7 @@ const UserSettings = () => {
                   <h2 className="text-md font-semibold dark:text-white mb-5">
                     Transaction Review
                   </h2>
-                  <div className="mb-4 flex items-center ">
+                  <div className="mb-4 flex items-center">
                     <Checkbox
                       checked={notifyUnreviewedTransactions}
                       onCheckedChange={(value) =>
@@ -487,7 +506,7 @@ const UserSettings = () => {
                     />
                     <label
                       htmlFor="unreviewed-transactions"
-                      className="ml-2 dark:text-white text-sm flex items-center"
+                      className="ml-2 dark:text-white"
                     >
                       Notify me of unreviewed transactions
                     </label>
@@ -511,7 +530,7 @@ const UserSettings = () => {
                   </h2>
                   <div className="mb-4">
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Email</label>
+                      <label className="mr-4 dark:text-white">Email</label>
                       <Input
                         type="email"
                         className="border p-1 rounded-md dark:bg-black dark:text-white ml-8 w-64"
@@ -520,7 +539,7 @@ const UserSettings = () => {
                   </div>
                   <div className="mb-4">
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Password</label>
+                      <label className="mr-4 dark:text-white">Password</label>
                       <div className="relative flex items-center">
                         <Input
                           type={passwordVisible ? "text" : "password"}
@@ -541,7 +560,7 @@ const UserSettings = () => {
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <label className="mr-4 mt-4 dark:text-white text-sm">
+                    <label className="mr-4 mt-4 dark:text-white">
                       Two-Factor Authentication
                     </label>
                     <Checkbox
@@ -564,19 +583,19 @@ const UserSettings = () => {
             <section className={sectionStyles}>
               <div className="dark:border-[#383838] dark:bg-black/40 border rounded mb-4">
                 <div className="p-4">
-                  <h2 className="text-md font-semibold dark:text-white mb-5 ">
+                  <h2 className="text-md font-semibold dark:text-white mb-5">
                     User Profile
                   </h2>
                   <div className="mb-4 flex flex-col space-y-4">
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Picture</label>
+                      <label className="mr-4 dark:text-white">Picture</label>
                       <input
                         type="file"
-                        className="border p-1 rounded-md dark:bg-black dark:text-white ml-6 w-64 text-sm" 
+                        className="border p-1 rounded-md dark:bg-black dark:text-white ml-6 w-64"
                       />
                     </div>
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Full Name</label>
+                      <label className="mr-4 dark:text-white">Full Name</label>
                       <Input
                         type="text"
                         className="border p-1 rounded-md dark:bg-black dark:text-white ml-1 w-64"
@@ -585,7 +604,7 @@ const UserSettings = () => {
                       />
                     </div>
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Birthday</label>
+                      <label className="mr-4 dark:text-white">Birthday</label>
                       <Input
                         type="date"
                         className="border p-1 rounded-md dark:bg-black dark:text-white ml-3 w-35"
@@ -594,9 +613,9 @@ const UserSettings = () => {
                       />
                     </div>
                     <div className="flex items-center">
-                      <label className="mr-4 dark:text-white text-sm">Timezone</label>
+                      <label className="mr-4 dark:text-white">Timezone</label>
                       <Select
-                        className="border p-1 rounded-md dark:bg-black dark:text-white "
+                        className="border p-1 rounded-md dark:bg-black dark:text-white"
                         value={timezone}
                         onValueChange={(value) => setTimezone(value)}
                       >
@@ -635,7 +654,7 @@ const UserSettings = () => {
                     Privacy Settings
                   </h2>
                   <div className="mb-4 flex items-center">
-                    <label className="mr-4 dark:text-white text-sm">Data Sharing</label>
+                    <label className="mr-4 dark:text-white">Data Sharing</label>
                     <Checkbox
                       checked={dataSharing}
                       onCheckedChange={(checked) => setDataSharing(checked)}
