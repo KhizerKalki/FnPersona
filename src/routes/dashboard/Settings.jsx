@@ -133,8 +133,7 @@ const UserSettings = () => {
     setActiveSection(section);
   };
 
-  const sectionStyles =
-    'mb-6 pb-4';
+  const sectionStyles = 'mb-6 pb-4';
 
   return (
     <div className='min-h-screen p-6 '>
@@ -222,7 +221,7 @@ const UserSettings = () => {
                       value={language}
                       onValueChange={(value) => setLanguage(value)}
                     >
-                      <SelectTrigger className='w-[180px]  dark:text-white dark:border-white/20 border-black/30 border-2 text-[12px]'>
+                      <SelectTrigger className='w-[180px]  dark:text-white dark:border-white/20 text-[12px]'>
                         <SelectValue
                           placeholder='Select Language'
                           className='dark:text-white'
@@ -234,7 +233,7 @@ const UserSettings = () => {
                             <SelectItem
                               key={lang}
                               value={lang}
-                              className='dark:text-white'
+                              className='dark:text-white text-[12px]'
                             >
                               {lang}
                             </SelectItem>
@@ -246,7 +245,7 @@ const UserSettings = () => {
                 </div>
                 <Separator />
                 <div className='text-[13px] p-2 py-4 dark:bg-black/50 bg-gray-100 dark:text-white/40'>
-                Select your preferred language from the options
+                  Select your preferred language from the options
                 </div>
               </div>
               <Update />
