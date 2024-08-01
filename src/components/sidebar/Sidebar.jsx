@@ -114,36 +114,36 @@ function Sidebar() {
           </Tooltip>
 
           <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <NavLink
-                  to='/dashboard/goal'
-                  className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
-                >
-                  <GoalIcon className='h-5 w-5 activebutton' />
-                  <span className='sr-only'>Goal</span>
-                </NavLink>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className='w-56 ml-14 mt-[-35px]'>
-                <DropdownMenuGroup>
-                  <DropdownMenuItem asChild>
-                    <NavLink
-                      to='/dashboard/goal/addgoal'
-                      className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
-                    >
-                      Add Goal
-                    </NavLink>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <NavLink
-                      to='/dashboard/goal/overviewgoal'
-                      className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
-                    >
-                      Overview Goal
-                    </NavLink>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <NavLink
+                to='/dashboard/goal'
+                className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
+              >
+                <GoalIcon className='h-5 w-5 activebutton' />
+                <span className='sr-only'>Goal</span>
+              </NavLink>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-56 ml-14 mt-[-35px]'>
+              <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                  <NavLink
+                    to='/dashboard/goal/addgoal'
+                    className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
+                  >
+                    Add Goal
+                  </NavLink>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <NavLink
+                    to='/dashboard/goal/overviewgoal'
+                    className='flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700'
+                  >
+                    Overview Goal
+                  </NavLink>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Tooltip>
             <TooltipTrigger asChild>
@@ -172,30 +172,17 @@ function Sidebar() {
           </Tooltip>
 
           <Tooltip>
-  <TooltipTrigger asChild>
-    <NavLink
-      to='/dashboard/partnership'
-      className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
-    >
-      <UsersIcon className='h-5 w-5 activebutton' /> {/* Replace with the correct icon */}
-      <span className='sr-only'>Retirement Planner</span>
-    </NavLink>
-  </TooltipTrigger>
-  <TooltipContent side='right'>Retirement Planner</TooltipContent>
-</Tooltip>
-
-          {/* <Tooltip>
             <TooltipTrigger asChild>
               <NavLink
-                to='/dashboard/networth'
-                className='flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
+                to='/dashboard/partnership'
+                className='flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8'
               >
-                <Wallet className='h-5 w-5 activebutton' />
-                <span className='sr-only'>Net Worth</span>
+                <UsersIcon className='h-5 w-5 activebutton' />{' '}
+                <span className='sr-only'>Manage Partnership</span>
               </NavLink>
             </TooltipTrigger>
-            <TooltipContent side='right'>Net Worth</TooltipContent>
-          </Tooltip> */}
+            <TooltipContent side='right'>Manage Partnership</TooltipContent>
+          </Tooltip>
         </nav>
         <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-5'>
           <Tooltip>
