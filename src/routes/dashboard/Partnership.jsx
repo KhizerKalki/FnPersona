@@ -28,7 +28,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
-import SharedFinancialDashboard from '@/components/graph/client/SharedFinancialDashboard';
 import ContributionTracking from '@/components/graph/client/ContributionTracking';
 import { useState } from 'react';
 import {
@@ -42,6 +41,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
+import { SharedFinancial } from '@/components/graph/client/SharedFinancial';
 
 const Partnership = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,8 +120,9 @@ const Partnership = () => {
   ];
 
   return (
-    <>
+    <div className='container'>
       <div className='gap-4'>
+      
         <div className='header-section p-4 mb-4 flex items-center justify-between'>
           <div>
             <h1 className='text-2xl font-bold dark:text-white'>
@@ -266,7 +267,7 @@ const Partnership = () => {
             </Dialog>
           </div>
         </div>
-        <SharedFinancialDashboard />
+        <SharedFinancial />
         <ContributionTracking partners={partners} monthlyContributions={monthlyContributions} />
       </div>
 
@@ -325,7 +326,7 @@ const Partnership = () => {
           </CardFooter>
         </Card>
       </div>
-    </>
+    </div>
   );
 };
 
