@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { TrendingUp, Settings } from 'lucide-react';
+import { TrendingUp, Settings, MessageCircle } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -24,12 +24,11 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-  DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import ContributionTracking from '@/components/graph/client/ContributionTracking';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -70,8 +69,13 @@ const Partnership = () => {
     },
   ]);
   const [accessLevel, setAccessLevel] = useState('view-only');
+  const [monthlyContributions, setMonthlyContributions] = useState([]);
 
   const colors = ['#4caf50', '#f44336', '#2196f3', '#ff9800', '#9c27b0'];
+
+  useEffect(() => {
+    setMonthlyContributions(generateMonthlyContributions(partners));
+  }, [partners]);
 
   const handleClose = () => setIsOpen(false);
   const handleSettingsClose = () => setIsSettingsOpen(false);
@@ -169,44 +173,47 @@ const Partnership = () => {
     </Drawer>
   );
 
-  const monthlyContributions = [
-    {
-      month: 'Jan',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-    {
-      month: 'Feb',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-    {
-      month: 'Mar',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-    {
-      month: 'Apr',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-    {
-      month: 'May',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-    {
-      month: 'Jun',
-      ...Object.fromEntries(
-        partners.map((partner) => [partner.name, partner.contribution])
-      ),
-    },
-  ];
+  const generateMonthlyContributions = (partners) => {
+    const getRandomContribution = () => Math.floor(Math.random() * 1000);
+    return [
+      {
+        month: 'Jan',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+      {
+        month: 'Feb',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+      {
+        month: 'Mar',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+      {
+        month: 'Apr',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+      {
+        month: 'May',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+      {
+        month: 'Jun',
+        ...Object.fromEntries(
+          partners.map((p) => [p.name, getRandomContribution()])
+        ),
+      },
+    ];
+  };
 
   return (
     <div className='container'>
@@ -381,10 +388,10 @@ const Partnership = () => {
       </div>
 
       {/* All Partners Contributions Table */}
-      <div className='mt-4'>
+      <div className='mt-4 grid grid-cols-2 gap-4'>
         <Card>
           <CardHeader>
-            <CardTitle>Partner Contributions</CardTitle>
+            <CardTitle className='text-md'>Partner Contributions</CardTitle>
             <CardDescription>January - June 2024</CardDescription>
           </CardHeader>
           <CardContent>
@@ -429,14 +436,49 @@ const Partnership = () => {
               </TableFooter>
             </Table>
           </CardContent>
-          <CardFooter>
-            <div className='flex items-center gap-2 font-medium leading-none'>
-              Trending up by 5.2% this month <TrendingUp className='h-4 w-4' />
-            </div>
-            <div className='leading-none text-muted-foreground'>
-              Showing total contributions for the last 6 months
-            </div>
-          </CardFooter>
+         
+        </Card>
+
+        {/* Partner Settings Table */}
+        <Card>
+          <CardHeader>
+            <CardTitle className='text-md'>Partner Settings</CardTitle>
+            <CardDescription className='text-[12px]'>
+              Adjust partner access and privacy settings.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableCaption>Settings for each partner</TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className='text-left w-full'>Name</TableHead>
+                  <TableHead className='text-right'>Settings</TableHead>
+                  <TableHead className='text-right'>Message</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {partners.map((partner) => (
+                  <TableRow key={partner.name}>
+                    <TableCell className='text-left font-medium'>
+                      {partner.name}
+                    </TableCell>
+
+                    <TableCell className='text-right'>
+                      <Button variant='outline' className='dark:text-white'>
+                        <Settings className='h-4 w-4' />
+                      </Button>
+                    </TableCell>
+                    <TableCell className='text-right'>
+                      <Button variant='outline' className='dark:text-white'>
+                        <MessageCircle className='h-4 w-4' />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
         </Card>
       </div>
     </div>
