@@ -56,7 +56,7 @@ const ToastSimple = ({ message }) => {
       }}
       className="dark:text-white"
     >
-      Send Message
+      Send Messages
     </Button>
   );
 };
@@ -106,7 +106,7 @@ const Partnership = () => {
     const newPartner = {
       name: form.name.value,
       email: form.email.value,
-      contribution: Math.floor(Math.random() * 1000), // random contribution value for the demo
+      contribution: Math.floor(Math.random() * 1000), 
       color: colors[partners.length % colors.length],
       privacy: { showTransactions: true, hideSensitiveData: false },
     };
@@ -141,6 +141,7 @@ const Partnership = () => {
       if (!selectedPartner && !partners.some(partner => trimmedMessage.includes(`@${partner.name}`))) {
         toast({
           description: "Please select a partner before sending the message.",
+          className:"bg-white dark:bg-black",
         });
         return;
       }
@@ -148,6 +149,7 @@ const Partnership = () => {
       if (isMessageEmpty) {
         toast({
           description: "Message cannot be empty.",
+          className:"bg-white dark:bg-black",
         });
         return;
       }
@@ -156,8 +158,9 @@ const Partnership = () => {
       setMessage('');
       toast({
         description: "Your message has been sent.",
+        className:"bg-white dark:bg-black",
       });
-      setIsDrawerOpen(false); // Close the drawer after sending the message
+      setIsDrawerOpen(false); 
     };
 
     return (
