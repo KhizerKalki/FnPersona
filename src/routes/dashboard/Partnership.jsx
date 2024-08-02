@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -42,9 +43,28 @@ import {
 import { Checkbox } from '@/components/ui/checkbox';
 import { SharedFinancial } from '@/components/graph/client/SharedFinancial';
 
+const ToastSimple = ({ message }) => {
+  const { toast } = useToast();
+
+  return (
+    <Button
+      variant="outline"
+      onClick={() => {
+        toast({
+          description: message,
+        });
+      }}
+      className="dark:text-white"
+    >
+      Send Message
+    </Button>
+  );
+};
+
 const Partnership = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [partners, setPartners] = useState([
     {
       name: 'Alice',
@@ -107,6 +127,7 @@ const Partnership = () => {
   const TextareaWithButton = ({ partners, onMessageSend }) => {
     const [message, setMessage] = useState('');
     const [selectedPartner, setSelectedPartner] = useState('');
+    const { toast } = useToast();
 
     const handlePartnerSelect = (partner) => {
       setSelectedPartner(partner);
@@ -114,8 +135,29 @@ const Partnership = () => {
     };
 
     const handleSendMessage = () => {
+      const trimmedMessage = message.trim();
+      const isMessageEmpty = !trimmedMessage || trimmedMessage === `@${selectedPartner}`;
+
+      if (!selectedPartner && !partners.some(partner => trimmedMessage.includes(`@${partner.name}`))) {
+        toast({
+          description: "Please select a partner before sending the message.",
+        });
+        return;
+      }
+
+      if (isMessageEmpty) {
+        toast({
+          description: "Message cannot be empty.",
+        });
+        return;
+      }
+
       onMessageSend(message);
       setMessage('');
+      toast({
+        description: "Your message has been sent.",
+      });
+      setIsDrawerOpen(false); // Close the drawer after sending the message
     };
 
     return (
@@ -147,8 +189,12 @@ const Partnership = () => {
             placeholder='Type your message here.'
             className='dark:text-white w-[430px] mb-6'
           />
-          <Button onClick={handleSendMessage} className='p-5'>
-            Send message
+          <Button
+            variant="outline"
+            onClick={handleSendMessage}
+            className="dark:text-white ml-72"
+          >
+            Send Message
           </Button>
         </div>
       </>
@@ -156,7 +202,7 @@ const Partnership = () => {
   };
 
   const DrawerDemo = ({ partners }) => (
-    <Drawer>
+    <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <DrawerTrigger asChild>
         <Button variant='outline' className='dark:text-white'>
           Message
