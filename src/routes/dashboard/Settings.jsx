@@ -536,16 +536,16 @@ const UserSettings = () => {
                   </h2>
                   <div className="mb-4">
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Email</label>
+                      <label className="mr-4 test-sm dark:text-white">Email</label>
                       <Input
                         type="email"
-                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-8 w-full md:w-64"
+                        className="border p-1  rounded-md dark:bg-black dark:text-white md:ml-8 w-full md:w-64"
                       />
                     </div>
                   </div>
                   <div className="mb-4">
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Password</label>
+                      <label className="mr-4 dark:text-white text-sm">Password</label>
                       <div className="relative flex items-center w-full md:w-64">
                         <Input
                           type={passwordVisible ? "text" : "password"}
@@ -566,7 +566,7 @@ const UserSettings = () => {
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row items-center">
-                    <label className="mr-4 mt-4 dark:text-white">
+                    <label className="mr-4 mt-4 dark:text-white text-sm">
                       Two-Factor Authentication
                     </label>
                     <Checkbox
@@ -594,14 +594,14 @@ const UserSettings = () => {
                   </h2>
                   <div className="mb-4 flex flex-col space-y-4">
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Picture</label>
+                      <label className="mr-4 dark:text-white text-sm">Picture</label>
                       <input
                         type="file"
-                        className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-6 w-full md:w-64 text-sm"
+                        className="border p-1 rounded-md  dark:bg-black dark:text-white md:ml-6 w-full md:w-64 text-sm"
                       />
                     </div>
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Full Name</label>
+                      <label className="mr-4 dark:text-white text-sm">Full Name</label>
                       <Input
                         type="text"
                         className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-1 w-full md:w-64"
@@ -610,7 +610,7 @@ const UserSettings = () => {
                       />
                     </div>
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Birthday</label>
+                      <label className="mr-4 dark:text-white text-sm">Birthday</label>
                       <Input
                         type="date"
                         className="border p-1 rounded-md dark:bg-black dark:text-white md:ml-3 w-fit pl-5  justify-center md:w-35"
@@ -619,7 +619,7 @@ const UserSettings = () => {
                       />
                     </div>
                     <div className="flex flex-col md:flex-row items-center">
-                      <label className="mr-4 dark:text-white">Timezone</label>
+                      <label className="mr-4 dark:text-white text-sm">Timezone</label>
                       <Select
                         className="border p-1 rounded-md dark:bg-black dark:text-white w-full md:w-auto"
                         value={timezone}
@@ -660,7 +660,7 @@ const UserSettings = () => {
                     Privacy Settings
                   </h2>
                   <div className="mb-4 flex items-center">
-                    <label className="mr-4 dark:text-white">Data Sharing</label>
+                    <label className="mr-4 dark:text-white text-sm">Data Sharing</label>
                     <Checkbox
                       checked={dataSharing}
                       onCheckedChange={(checked) => setDataSharing(checked)}
