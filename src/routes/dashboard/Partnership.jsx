@@ -42,6 +42,7 @@ import {
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SharedFinancial } from "@/components/graph/client/SharedFinancial";
+import PartnershipSettings from "@/components/partnerships/PartnershipSettings";
 
 const ToastSimple = ({ message }) => {
   const { toast } = useToast();
@@ -133,6 +134,45 @@ const Partnership = () => {
           ? { ...partner, accessLevel: value }
           : partner
       )
+    );
+  };
+  const TextareaWithButtonSingle = ({ partner, onMessageSend }) => {
+    const [message, setMessage] = useState("");
+    const { toast } = useToast();
+
+    const handleSend = () => {
+      const isMessageEmpty = !message;
+      if (isMessageEmpty) {
+        toast({
+          description: "Message cannot be empty.",
+          className: "bg-white dark:bg-black",
+        });
+        return;
+      }
+      onMessageSend(message);
+      setMessage("");
+      toast({
+        description: "Your message has been sent.",
+        className: "bg-white dark:bg-black",
+      });
+      setIsDrawerOpen(false);
+    };
+
+    return (
+      <div>
+        <h3 className="font-bold dark:text-white mt-3 mb-3 ml-3">
+          Message {partner.name}
+        </h3>
+        <Textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder={`Send a message to ${partner.name}`}
+          className="mt-3 mb-3 dark:text-white"
+        />
+        <Button onClick={handleSend} className="mt-3 mb-3 ml-3">
+          Send
+        </Button>
+      </div>
     );
   };
 
@@ -237,6 +277,26 @@ const Partnership = () => {
       </DrawerContent>
     </Drawer>
   );
+  const DrawerDemoSingle = ({ partner }) => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    return (
+      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+        <DrawerTrigger asChild>
+          <MessageCircle className="w-4 h-4 ml-6" />
+        </DrawerTrigger>
+        <DrawerContent className="w-[500px] ml-14">
+          <TextareaWithButtonSingle
+            partner={partner}
+            onMessageSend={(message) => {
+              console.log(`Message sent to ${partner.name}:`, message);
+              setIsDrawerOpen(false);
+            }}
+          />
+        </DrawerContent>
+      </Drawer>
+    );
+  };
 
   const generateMonthlyContributions = (partners) => {
     const getRandomContribution = () => Math.floor(Math.random() * 1000);
@@ -535,14 +595,13 @@ const Partnership = () => {
                     </TableCell>
 
                     <TableCell className="text-right">
-                      <Button variant="outline" className="dark:text-white">
-                        <Settings className="h-4 w-4" />
-                      </Button>
+                      <PartnershipSettings
+                        partner={partner}
+                        setPartners={setPartners}
+                      />
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button variant="outline" className="dark:text-white">
-                        <MessageCircle className="h-4 w-4" />
-                      </Button>
+                      <DrawerDemoSingle partner={partner} />
                     </TableCell>
                   </TableRow>
                 ))}
