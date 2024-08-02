@@ -82,22 +82,54 @@ const Partnership = () => {
     );
   };
 
-  const TextareaWithButton = () => (
-    <>
-      <h1 className='dark:text-white ml-4 items-center justify-between mb-4'>
-        Message Partner
-      </h1>
-      <div className='w-[50%] items-center justify-between p-2'>
-        <Textarea
-          placeholder='Type your message here.'
-          className='dark:text-white w-[430px] mb-6'
-        />
-        <Button className='mr-[-200px] p-5'>Send message</Button>
-      </div>
-    </>
-  );
+  const TextareaWithButton = ({ partners, onMessageSend }) => {
+    const [message, setMessage] = useState('');
+    const [selectedPartner, setSelectedPartner] = useState('');
+  
+    const handlePartnerSelect = (partner) => {
+      setSelectedPartner(partner);
+      setMessage((prevMessage) => prevMessage + `@${partner} `);
+    };
+  
+    const handleSendMessage = () => {
+      onMessageSend(message);
+      setMessage('');
+    };
+  
+    return (
+      <>
+        <h1 className='dark:text-white ml-4 items-center justify-between mb-4'>
+          Message Partner
+        </h1>
+        <div className='w-[50%] items-center justify-between p-2'>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <h1 className='mb-4 dark:text-white pl-2 hover:underline hover:cursor-pointer"'>Select Partner</h1>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {partners.map((partner) => (
+                <DropdownMenuRadioItem
+                  key={partner.name}
+                  onClick={() => handlePartnerSelect(partner.name)}
+                >
+                  {partner.name}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder='Type your message here.'
+            className='dark:text-white w-[430px] mb-6'
+          />
+          <Button onClick={handleSendMessage} className='p-5'>Send message</Button>
+        </div>
+      </>
+    );
+  };
 
-  const DrawerDemo = () => (
+  const DrawerDemo = ({ partners }) => (
     <Drawer>
       <DrawerTrigger asChild>
         <Button variant='outline' className='dark:text-white'>
@@ -105,7 +137,10 @@ const Partnership = () => {
         </Button>
       </DrawerTrigger>
       <DrawerContent className='w-[500px] ml-14'>
-        <TextareaWithButton />
+        <TextareaWithButton partners={partners} onMessageSend={(message) => {
+         
+          console.log('Message sent:', message);
+        }} />
       </DrawerContent>
     </Drawer>
   );
@@ -189,7 +224,7 @@ const Partnership = () => {
                 </form>
               </DialogContent>
             </Dialog>
-            <DrawerDemo />
+            <DrawerDemo partners={partners} />
             <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
               <DialogTrigger asChild>
                 <Button variant='outline' className='dark:text-white'>
