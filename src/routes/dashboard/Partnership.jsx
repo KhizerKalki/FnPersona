@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast";
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
 import {
   Dialog,
   DialogContent,
@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { TrendingUp, Settings, MessageCircle } from "lucide-react";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { TrendingUp, Settings, MessageCircle } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -18,18 +18,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import ContributionTracking from "@/components/graph/client/ContributionTracking";
-import { useState, useEffect } from "react";
+} from '@/components/ui/dropdown-menu';
+import { Label } from '@/components/ui/label';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import ContributionTracking from '@/components/graph/client/ContributionTracking';
+import { useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -39,23 +39,23 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SharedFinancial } from "@/components/graph/client/SharedFinancial";
-import PartnershipSettings from "@/components/partnerships/PartnershipSettings";
+} from '@/components/ui/table';
+import { Checkbox } from '@/components/ui/checkbox';
+import { SharedFinancial } from '@/components/graph/client/SharedFinancial';
+import PartnershipSettings from '@/components/partnerships/PartnershipSettings';
 
 const ToastSimple = ({ message }) => {
   const { toast } = useToast();
 
   return (
     <Button
-      variant="outline"
+      variant='outline'
       onClick={() => {
         toast({
           description: message,
         });
       }}
-      className="dark:text-white"
+      className='dark:text-white'
     >
       Send Messages
     </Button>
@@ -68,34 +68,34 @@ const Partnership = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [partners, setPartners] = useState([
     {
-      name: "Alice",
-      email: "alice@example.com",
+      name: 'Alice',
+      email: 'alice@example.com',
       contribution: 500,
-      color: "#4caf50",
+      color: '#4caf50',
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: "view-only",
+      accessLevel: 'view-only',
     },
     {
-      name: "Bob",
-      email: "bob@example.com",
+      name: 'Bob',
+      email: 'bob@example.com',
       contribution: 700,
-      color: "#f44336",
+      color: '#f44336',
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: "view-only",
+      accessLevel: 'view-only',
     },
     {
-      name: "Charlie",
-      email: "charlie@example.com",
+      name: 'Charlie',
+      email: 'charlie@example.com',
       contribution: 300,
-      color: "#2196f3",
+      color: '#2196f3',
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: "view-only",
+      accessLevel: 'view-only',
     },
   ]);
 
   const [monthlyContributions, setMonthlyContributions] = useState([]);
 
-  const colors = ["#4caf50", "#f44336", "#2196f3", "#ff9800", "#9c27b0"];
+  const colors = ['#4caf50', '#f44336', '#2196f3', '#ff9800', '#9c27b0'];
 
   useEffect(() => {
     setMonthlyContributions(generateMonthlyContributions(partners));
@@ -137,39 +137,39 @@ const Partnership = () => {
     );
   };
   const TextareaWithButtonSingle = ({ partner, onMessageSend }) => {
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState('');
     const { toast } = useToast();
 
     const handleSend = () => {
       const isMessageEmpty = !message;
       if (isMessageEmpty) {
         toast({
-          description: "Message cannot be empty.",
-          className: "bg-white dark:bg-black",
+          description: 'Message cannot be empty.',
+          className: 'bg-white dark:bg-black',
         });
         return;
       }
       onMessageSend(message);
-      setMessage("");
+      setMessage('');
       toast({
-        description: "Your message has been sent.",
-        className: "bg-white dark:bg-black",
+        description: 'Your message has been sent.',
+        className: 'bg-white dark:bg-black',
       });
       setIsDrawerOpen(false);
     };
 
     return (
       <div>
-        <h3 className="font-bold dark:text-white mt-3 mb-3 ml-3">
+        <h3 className='font-bold dark:text-white mt-3 mb-3 ml-3'>
           Message {partner.name}
         </h3>
         <Textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={`Send a message to ${partner.name}`}
-          className="mt-3 mb-3 dark:text-white"
+          className='mt-3 mb-3 dark:text-white w-[95%] mx-auto'
         />
-        <Button onClick={handleSend} className="mt-3 mb-3 ml-3">
+        <Button onClick={handleSend} className='mt-3 mb-3 ml-3'>
           Send
         </Button>
       </div>
@@ -177,8 +177,8 @@ const Partnership = () => {
   };
 
   const TextareaWithButton = ({ partners, onMessageSend }) => {
-    const [message, setMessage] = useState("");
-    const [selectedPartner, setSelectedPartner] = useState("");
+    const [message, setMessage] = useState('');
+    const [selectedPartner, setSelectedPartner] = useState('');
     const { toast } = useToast();
 
     const handlePartnerSelect = (partner) => {
@@ -196,35 +196,35 @@ const Partnership = () => {
         !partners.some((partner) => trimmedMessage.includes(`@${partner.name}`))
       ) {
         toast({
-          description: "Please select a partner before sending the message.",
-          className: "bg-white dark:bg-black",
+          description: 'Please select a partner before sending the message.',
+          className: 'bg-white dark:bg-black',
         });
         return;
       }
 
       if (isMessageEmpty) {
         toast({
-          description: "Message cannot be empty.",
-          className: "bg-white dark:bg-black",
+          description: 'Message cannot be empty.',
+          className: 'bg-white dark:bg-black',
         });
         return;
       }
 
       onMessageSend(message);
-      setMessage("");
+      setMessage('');
       toast({
-        description: "Your message has been sent.",
-        className: "bg-white dark:bg-black",
+        description: 'Your message has been sent.',
+        className: 'bg-white dark:bg-black',
       });
       setIsDrawerOpen(false);
     };
 
     return (
       <>
-        <h1 className="dark:text-white ml-4 items-center justify-between mb-4">
+        <h1 className='dark:text-white ml-4 items-center justify-between mb-4 font-semibold'>
           Message Partner
         </h1>
-        <div className="w-[50%] items-center justify-between p-2">
+        <div className='w-[100%] items-center justify-between p-2'>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <h1 className='mb-4 dark:text-white pl-2 hover:underline hover:cursor-pointer"'>
@@ -242,19 +242,23 @@ const Partnership = () => {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message here."
-            className="dark:text-white w-[430px] mb-6"
-          />
-          <Button
-            variant="outline"
-            onClick={handleSendMessage}
-            className="dark:text-white ml-72"
-          >
-            Send Message
-          </Button>
+          <div className='flex flex-col w-full'>
+            <Textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder='Type your message here.'
+              className='dark:text-white mx-auto w-[100%]  mb-6'
+            />
+            <div className='flex justify-end'>
+              <Button
+                variant='outline'
+                onClick={handleSendMessage}
+                className='dark:text-white w-[30%] '
+              >
+                Send Message
+              </Button>
+            </div>
+          </div>
         </div>
       </>
     );
@@ -263,15 +267,15 @@ const Partnership = () => {
   const DrawerDemo = ({ partners }) => (
     <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="dark:text-white">
+        <Button variant='outline' className='dark:text-white'>
           Message
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="w-[500px] ml-14">
+      <DrawerContent className='w-[500px] ml-14'>
         <TextareaWithButton
           partners={partners}
           onMessageSend={(message) => {
-            console.log("Message sent:", message);
+            console.log('Message sent:', message);
           }}
         />
       </DrawerContent>
@@ -283,9 +287,11 @@ const Partnership = () => {
     return (
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
         <DrawerTrigger asChild>
-          <MessageCircle className="w-4 h-4 ml-6" />
+          <Button variant='outline' className='dark:text-white'>
+            <MessageCircle className='w-4 h-4 ' />
+          </Button>
         </DrawerTrigger>
-        <DrawerContent className="w-[500px] ml-14">
+        <DrawerContent className='w-[500px] ml-14'>
           <TextareaWithButtonSingle
             partner={partner}
             onMessageSend={(message) => {
@@ -302,37 +308,37 @@ const Partnership = () => {
     const getRandomContribution = () => Math.floor(Math.random() * 1000);
     return [
       {
-        month: "Jan",
+        month: 'Jan',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
       },
       {
-        month: "Feb",
+        month: 'Feb',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
       },
       {
-        month: "Mar",
+        month: 'Mar',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
       },
       {
-        month: "Apr",
+        month: 'Apr',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
       },
       {
-        month: "May",
+        month: 'May',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
       },
       {
-        month: "Jun",
+        month: 'Jun',
         ...Object.fromEntries(
           partners.map((p) => [p.name, getRandomContribution()])
         ),
@@ -341,70 +347,70 @@ const Partnership = () => {
   };
 
   return (
-    <div className="container">
-      <div className="gap-4">
-        <div className="header-section p-4 mb-4 flex items-center justify-between">
+    <div className='container'>
+      <div className='gap-4'>
+        <div className='header-section p-4 mb-4 flex items-center justify-between'>
           <div>
-            <h1 className="text-2xl font- dark:text-white">
+            <h1 className='text-2xl font- dark:text-white'>
               Manage Partnership
             </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className='text-sm text-gray-600 dark:text-gray-400'>
               Manage your partnerships, invite new partners, and control privacy
               settings all in one place.
             </p>
           </div>
-          <div className="flex items-center">
+          <div className='flex items-center gap-1'>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" className="dark:text-white">
+                <Button variant='outline' className='dark:text-white'>
                   Add Partner
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className='sm:max-w-[425px]'>
                 <DialogHeader>
-                  <DialogTitle className="dark:text-white">
+                  <DialogTitle className='dark:text-white'>
                     Add Partner
                   </DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
+                  <div className='grid gap-4 py-4'>
+                    <div className='grid grid-cols-4 items-center gap-4'>
                       <Label
-                        htmlFor="name"
-                        className="text-right dark:text-white"
+                        htmlFor='name'
+                        className='text-right dark:text-white'
                       >
                         Name
                       </Label>
                       <Input
-                        id="name"
-                        name="name"
-                        className="col-span-3 dark:text-white"
+                        id='name'
+                        name='name'
+                        className='col-span-3 dark:text-white'
                       />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className='grid grid-cols-4 items-center gap-4'>
                       <Label
-                        htmlFor="email"
-                        className="text-right dark:text-white"
+                        htmlFor='email'
+                        className='text-right dark:text-white'
                       >
                         Email
                       </Label>
                       <Input
-                        id="email"
-                        name="email"
-                        className="col-span-3 dark:text-white"
-                        type="email"
+                        id='email'
+                        name='email'
+                        className='col-span-3 dark:text-white'
+                        type='email'
                       />
                     </div>
                   </div>
                   <DialogFooter>
                     <Button
-                      variant="outline"
+                      variant='outline'
                       onClick={handleClose}
-                      className="dark:text-white"
+                      className='dark:text-white'
                     >
                       Cancel
                     </Button>
-                    <Button type="submit">Save changes</Button>
+                    <Button type='submit'>Save changes</Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
@@ -415,84 +421,84 @@ const Partnership = () => {
               onOpenChange={setIsSettingsOpen}
             >
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="dark:text-white">
-                  <Settings className="h-4 w-4" />
+                <Button variant='outline' className='dark:text-white'>
+                  <Settings className='h-4 w-4' />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="sm:max-w-[425px] p-4 bg-white rounded-lg shadow-lg">
-                <div className="py-2">
-                  <div className="mb-4">
-                    <Label className="dark:text-white">
+              <DropdownMenuContent className='sm:max-w-[425px] p-4 bg-white rounded-lg shadow-lg'>
+                <div className='py-2'>
+                  <div className='mb-4'>
+                    <Label className='dark:text-white'>
                       Advanced Privacy Controls:
                     </Label>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>
                       Restrict access to specific financial data or features.
                     </p>
                     {partners.map((partner) => (
                       <div
                         key={partner.name}
-                        className="mt-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg"
+                        className='mt-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg'
                       >
-                        <div className="flex justify-between items-center">
-                          <h3 className="font-bold dark:text-white">
+                        <div className='flex justify-between items-center'>
+                          <h3 className='font-bold dark:text-white'>
                             {partner.name}
                           </h3>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button
-                                variant="outline"
-                                className="dark:text-white"
+                                variant='outline'
+                                className='dark:text-white'
                               >
                                 Access Level
                               </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56">
+                            <DropdownMenuContent className='w-56'>
                               <DropdownMenuRadioGroup
                                 value={partner.accessLevel}
                                 onValueChange={(value) =>
                                   handleAccessLevelChange(partner.name, value)
                                 }
                               >
-                                <DropdownMenuRadioItem value="view-only">
+                                <DropdownMenuRadioItem value='view-only'>
                                   View-Only
                                 </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="edit-permissions">
+                                <DropdownMenuRadioItem value='edit-permissions'>
                                   Edit Permissions
                                 </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="full-access">
+                                <DropdownMenuRadioItem value='full-access'>
                                   Full Access
                                 </DropdownMenuRadioItem>
                               </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
-                        <div className="flex items-center gap-2 mt-2">
+                        <div className='flex items-center gap-2 mt-2'>
                           <Checkbox
                             checked={partner.privacy.showTransactions}
                             onCheckedChange={(checked) =>
                               handlePrivacyChange(
                                 partner.name,
-                                "showTransactions",
+                                'showTransactions',
                                 checked
                               )
                             }
                           />
-                          <Label className="text-gray-600 dark:text-gray-400">
+                          <Label className='text-gray-600 dark:text-gray-400'>
                             Show transactions
                           </Label>
                         </div>
-                        <div className="flex items-center gap-2 mt-2">
+                        <div className='flex items-center gap-2 mt-2'>
                           <Checkbox
                             checked={partner.privacy.hideSensitiveData}
                             onCheckedChange={(checked) =>
                               handlePrivacyChange(
                                 partner.name,
-                                "hideSensitiveData",
+                                'hideSensitiveData',
                                 checked
                               )
                             }
                           />
-                          <Label className="text-gray-600 dark:text-gray-400">
+                          <Label className='text-gray-600 dark:text-gray-400'>
                             Hide sensitive data
                           </Label>
                         </div>
@@ -501,9 +507,9 @@ const Partnership = () => {
                   </div>
                 </div>
                 <Button
-                  variant="outline"
+                  variant='outline'
                   onClick={handleSettingsClose}
-                  className="dark:text-white"
+                  className='dark:text-white'
                 >
                   Close
                 </Button>
@@ -519,10 +525,10 @@ const Partnership = () => {
       </div>
 
       {/* All Partners Contributions Table */}
-      <div className="mt-4 grid grid-cols-2 gap-4">
+      <div className='mt-4 grid grid-cols-2 gap-4'>
         <Card>
           <CardHeader>
-            <CardTitle className="text-md">Partner Contributions</CardTitle>
+            <CardTitle className='text-md'>Partner Contributions</CardTitle>
             <CardDescription>January - June 2024</CardDescription>
           </CardHeader>
           <CardContent>
@@ -532,7 +538,7 @@ const Partnership = () => {
                 <TableRow>
                   <TableHead>Month</TableHead>
                   {partners.map((partner) => (
-                    <TableHead key={partner.name} className="text-right">
+                    <TableHead key={partner.name} className='text-right'>
                       {partner.name}
                     </TableHead>
                   ))}
@@ -541,11 +547,11 @@ const Partnership = () => {
               <TableBody>
                 {monthlyContributions.map((contribution, idx) => (
                   <TableRow key={idx}>
-                    <TableCell className="font-medium">
+                    <TableCell className='font-medium'>
                       {contribution.month}
                     </TableCell>
                     {partners.map((partner) => (
-                      <TableCell key={partner.name} className="text-right">
+                      <TableCell key={partner.name} className='text-right'>
                         {contribution[partner.name]}
                       </TableCell>
                     ))}
@@ -556,7 +562,7 @@ const Partnership = () => {
                 <TableRow>
                   <TableCell>Total</TableCell>
                   {partners.map((partner) => (
-                    <TableCell key={partner.name} className="text-right">
+                    <TableCell key={partner.name} className='text-right'>
                       {monthlyContributions.reduce(
                         (sum, curr) => sum + curr[partner.name],
                         0
@@ -572,8 +578,8 @@ const Partnership = () => {
         {/* Partner Settings Table */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-md">Partner Settings</CardTitle>
-            <CardDescription className="text-[12px]">
+            <CardTitle className='text-md'>Partner Settings</CardTitle>
+            <CardDescription className='text-[12px]'>
               Adjust partner access and privacy settings.
             </CardDescription>
           </CardHeader>
@@ -582,25 +588,25 @@ const Partnership = () => {
               <TableCaption>Settings for each partner</TableCaption>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-left w-full">Name</TableHead>
-                  <TableHead className="text-right">Settings</TableHead>
-                  <TableHead className="text-right">Message</TableHead>
+                  <TableHead className='text-left w-full'>Name</TableHead>
+                  <TableHead className='text-right'>Settings</TableHead>
+                  <TableHead className='text-right'>Message</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {partners.map((partner) => (
                   <TableRow key={partner.name}>
-                    <TableCell className="text-left font-medium">
+                    <TableCell className='text-left font-medium'>
                       {partner.name}
                     </TableCell>
 
-                    <TableCell className="text-right">
+                    <TableCell className='text-right'>
                       <PartnershipSettings
                         partner={partner}
                         setPartners={setPartners}
                       />
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className='text-right'>
                       <DrawerDemoSingle partner={partner} />
                     </TableCell>
                   </TableRow>
