@@ -66,7 +66,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
   };
 
   return (
-    <div className='contribution-tracking my-4 gap-3 items-center grid grid-cols-3'>
+    <div className='contribution-tracking my-4 gap-3 items-center grid grid-cols-1 lg:grid-cols-3'>
       <Card className='flex flex-col'>
         <CardHeader className='items-center pb-0'>
           <CardTitle className='text-md text-center'>
@@ -82,7 +82,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
               config={chartConfig}
               className='mx-auto aspect-square max-h-[250px]'
             >
-              <ResponsiveContainer width='100%' height={300}>
+              <ResponsiveContainer width='100%' height={250}>
                 <PieChart>
                   <ChartTooltip
                     cursor={false}
@@ -94,7 +94,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
                     nameKey='name'
                     cx='50%'
                     cy='50%'
-                    outerRadius={100}
+                    outerRadius={80}
                   >
                     {individualData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -115,7 +115,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
         </CardFooter>
       </Card>
 
-      <div className='w-full col-span-2'>
+      <div className='w-full col-span-2 mt-4 lg:mt-0'>
         <Card className='flex flex-col pb-5'>
           <CardHeader className='items-center pb-2'>
             <CardTitle className='text-md text-center'>
@@ -128,7 +128,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
           <CardContent className='flex-1 pb-0'>
             {monthlyContributions?.length > 0 ? (
               <ChartContainer config={newChartConfig} className="w-full h-[250px]">
-                <ResponsiveContainer width='100%' height={300}>
+                <ResponsiveContainer width='100%' height={250}>
                   <LineChart
                     accessibilityLayer
                     data={monthlyContributions}
