@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/components/ui/use-toast';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -9,9 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { TrendingUp, Settings, MessageCircle } from 'lucide-react';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { TrendingUp, Settings, MessageCircle } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -19,17 +19,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Label } from '@/components/ui/label';
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
-import ContributionTracking from '@/components/graph/client/ContributionTracking';
+} from "@/components/ui/dropdown-menu";
+import { Label } from "@/components/ui/label";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import ContributionTracking from "@/components/graph/client/ContributionTracking";
 import {
   Table,
   TableBody,
@@ -39,10 +39,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Checkbox } from '@/components/ui/checkbox';
-import { SharedFinancial } from '@/components/graph/client/SharedFinancial';
-import PartnershipSettings from '@/components/partnerships/PartnershipSettings';
+} from "@/components/ui/table";
+import { Checkbox } from "@/components/ui/checkbox";
+import { SharedFinancial } from "@/components/graph/client/SharedFinancial";
+import PartnershipSettings from "@/components/partnerships/PartnershipSettings";
 
 const ToastSimple = ({ message }) => {
   const { toast } = useToast();
@@ -68,34 +68,34 @@ const Partnership = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [partners, setPartners] = useState([
     {
-      name: 'Alice',
-      email: 'alice@example.com',
+      name: "Alice",
+      email: "alice@example.com",
       contribution: 500,
-      color: '#4caf50',
+      color: "#4caf50",
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: 'view-only',
+      accessLevel: "view-only",
     },
     {
-      name: 'Bob',
-      email: 'bob@example.com',
+      name: "Bob",
+      email: "bob@example.com",
       contribution: 700,
-      color: '#f44336',
+      color: "#f44336",
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: 'view-only',
+      accessLevel: "view-only",
     },
     {
-      name: 'Charlie',
-      email: 'charlie@example.com',
+      name: "Charlie",
+      email: "charlie@example.com",
       contribution: 300,
-      color: '#2196f3',
+      color: "#2196f3",
       privacy: { showTransactions: true, hideSensitiveData: false },
-      accessLevel: 'view-only',
+      accessLevel: "view-only",
     },
   ]);
 
   const [monthlyContributions, setMonthlyContributions] = useState([]);
 
-  const colors = ['#4caf50', '#f44336', '#2196f3', '#ff9800', '#9c27b0'];
+  const colors = ["#4caf50", "#f44336", "#2196f3", "#ff9800", "#9c27b0"];
 
   useEffect(() => {
     setMonthlyContributions(generateMonthlyContributions(partners));
@@ -137,23 +137,23 @@ const Partnership = () => {
     );
   };
   const TextareaWithButtonSingle = ({ partner, onMessageSend }) => {
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState("");
     const { toast } = useToast();
 
     const handleSend = () => {
       const isMessageEmpty = !message;
       if (isMessageEmpty) {
         toast({
-          description: 'Message cannot be empty.',
-          className: 'bg-white dark:bg-black',
+          description: "Message cannot be empty.",
+          className: "bg-white dark:bg-black",
         });
         return;
       }
       onMessageSend(message);
-      setMessage('');
+      setMessage("");
       toast({
-        description: 'Your message has been sent.',
-        className: 'bg-white dark:bg-black',
+        description: "Your message has been sent.",
+        className: "bg-white dark:bg-black",
       });
       setIsDrawerOpen(false);
     };
@@ -177,8 +177,8 @@ const Partnership = () => {
   };
 
   const TextareaWithButton = ({ partners, onMessageSend }) => {
-    const [message, setMessage] = useState('');
-    const [selectedPartner, setSelectedPartner] = useState('');
+    const [message, setMessage] = useState("");
+    const [selectedPartner, setSelectedPartner] = useState("");
     const { toast } = useToast();
 
     const handlePartnerSelect = (partner) => {
@@ -196,25 +196,25 @@ const Partnership = () => {
         !partners.some((partner) => trimmedMessage.includes(`@${partner.name}`))
       ) {
         toast({
-          description: 'Please select a partner before sending the message.',
-          className: 'bg-white dark:bg-black',
+          description: "Please select a partner before sending the message.",
+          className: "bg-white dark:bg-black",
         });
         return;
       }
 
       if (isMessageEmpty) {
         toast({
-          description: 'Message cannot be empty.',
-          className: 'bg-white dark:bg-black',
+          description: "Message cannot be empty.",
+          className: "bg-white dark:bg-black",
         });
         return;
       }
 
       onMessageSend(message);
-      setMessage('');
+      setMessage("");
       toast({
-        description: 'Your message has been sent.',
-        className: 'bg-white dark:bg-black',
+        description: "Your message has been sent.",
+        className: "bg-white dark:bg-black",
       });
       setIsDrawerOpen(false);
     };
@@ -275,7 +275,7 @@ const Partnership = () => {
         <TextareaWithButton
           partners={partners}
           onMessageSend={(message) => {
-            console.log('Message sent:', message);
+            console.log("Message sent:", message);
           }}
         />
       </DrawerContent>
@@ -289,15 +289,14 @@ const Partnership = () => {
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
         <DrawerTrigger asChild>
           <Button variant="outline" className="dark:text-white">
-            <MessageCircle className="w-4 h-4" />
+            Message
           </Button>
         </DrawerTrigger>
         <DrawerContent className="w-[95%] sm:w-[500px] mx-auto">
           <TextareaWithButtonSingle
             partner={partner}
             onMessageSend={(message) => {
-              console.log(`Message sent to ${partner.name}:`, message);
-              setIsDrawerOpen(false);
+              console.log("Message sent:", message);
             }}
           />
         </DrawerContent>
@@ -305,320 +304,159 @@ const Partnership = () => {
     );
   };
 
-  const generateMonthlyContributions = (partners) => {
-    const getRandomContribution = () => Math.floor(Math.random() * 1000);
-    return [
-      {
-        month: 'Jan',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-      {
-        month: 'Feb',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-      {
-        month: 'Mar',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-      {
-        month: 'Apr',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-      {
-        month: 'May',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-      {
-        month: 'Jun',
-        ...Object.fromEntries(
-          partners.map((p) => [p.name, getRandomContribution()])
-        ),
-      },
-    ];
-  };
-
   return (
-    <div className="container mx-auto p-4">
-      <div className="gap-4">
-        <div className="header-section p-4 mb-4 flex flex-col md:flex-row items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold dark:text-white">
-              Manage Partnership
-            </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Manage your partnerships, invite new partners, and control privacy
-              settings all in one place.
-            </p>
-          </div>
-          <div className="flex flex-row flex-wrap items-center gap-1 mt-8">
+    <div className="container mx-auto p-4 sm:p-6 lg:p-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold dark:text-white">Partners</h2>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline" className="dark:text-white">
                   Add Partner
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent>
                 <DialogHeader>
-                  <DialogTitle className="dark:text-white">
-                    Add Partner
-                  </DialogTitle>
+                  <DialogTitle>Add Partner</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                   <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label
-                        htmlFor="name"
-                        className="text-right dark:text-white"
-                      >
-                        Name
-                      </Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        className="col-span-3 dark:text-white"
-                      />
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" name="name" type="text" required />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label
-                        htmlFor="email"
-                        className="text-right dark:text-white"
-                      >
-                        Email
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        className="col-span-3 dark:text-white"
-                        type="email"
-                      />
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="email">Email</Label>
+                      <Input id="email" name="email" type="email" required />
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button
-                      variant="outline"
-                      onClick={handleClose}
-                      className="dark:text-white"
-                    >
-                      Cancel
-                    </Button>
-                    <Button type="submit">Save changes</Button>
+                    <Button type="submit">Add Partner</Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
             </Dialog>
-            <DrawerDemo partners={partners} />
-            <DropdownMenu
-              open={isSettingsOpen}
-              onOpenChange={setIsSettingsOpen}
-            >
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="dark:text-white">
-                  <Settings className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="sm:max-w-[425px] p-4 bg-white rounded-lg shadow-lg">
-                <div className="py-2">
-                  <div className="mb-4">
-                    <Label className="dark:text-white">
-                      Advanced Privacy Controls:
-                    </Label>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Restrict access to specific financial data or features.
-                    </p>
-                    {partners.map((partner) => (
-                      <div
-                        key={partner.name}
-                        className="mt-4 p-3 border border-gray-200 dark:border-gray-700 rounded-lg"
-                      >
-                        <div className="flex justify-between items-center">
-                          <h3 className="font-bold dark:text-white">
-                            {partner.name}
-                          </h3>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                variant="outline"
-                                className="dark:text-white"
-                              >
-                                Access Level
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56">
-                              <DropdownMenuRadioGroup
-                                value={partner.accessLevel}
-                                onValueChange={(value) =>
-                                  handleAccessLevelChange(partner.name, value)
-                                }
-                              >
-                                <DropdownMenuRadioItem value="view-only">
-                                  View-Only
-                                </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="edit-permissions">
-                                  Edit Permissions
-                                </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="full-access">
-                                  Full Access
-                                </DropdownMenuRadioItem>
-                              </DropdownMenuRadioGroup>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Checkbox
-                            checked={partner.privacy.showTransactions}
-                            onCheckedChange={(checked) =>
-                              handlePrivacyChange(
-                                partner.name,
-                                'showTransactions',
-                                checked
-                              )
-                            }
-                          />
-                          <Label className="text-gray-600 dark:text-gray-400">
-                            Show transactions
-                          </Label>
-                        </div>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Checkbox
-                            checked={partner.privacy.hideSensitiveData}
-                            onCheckedChange={(checked) =>
-                              handlePrivacyChange(
-                                partner.name,
-                                'hideSensitiveData',
-                                checked
-                              )
-                            }
-                          />
-                          <Label className="text-gray-600 dark:text-gray-400">
-                            Hide sensitive data
-                          </Label>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <Button
-                  variant="outline"
-                  onClick={handleSettingsClose}
-                  className="dark:text-white"
-                >
-                  Close
-                </Button>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
-        </div>
-        <SharedFinancial />
-        <ContributionTracking
-          partners={partners}
-          monthlyContributions={monthlyContributions}
-        />
-      </div>
-
-      {/* All Partners Contributions Table */}
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-md">Partner Contributions</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableCaption>Contributions from all partners</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Month</TableHead>
-                  {partners.map((partner) => (
-                    <TableHead key={partner.name} className="text-right">
-                      {partner.name}
-                    </TableHead>
-                  ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {monthlyContributions.map((contribution, idx) => (
-                  <TableRow key={idx}>
-                    <TableCell className="font-medium">
-                      {contribution.month}
-                    </TableCell>
-                    {partners.map((partner) => (
-                      <TableCell key={partner.name} className="text-right">
-                        {contribution[partner.name]}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TableCell>Total</TableCell>
-                  {partners.map((partner) => (
-                    <TableCell key={partner.name} className="text-right">
-                      {monthlyContributions.reduce(
-                        (sum, curr) => sum + curr[partner.name],
-                        0
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </CardContent>
-        </Card>
-
-        {/* Partner Settings Table */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-md">Partner Settings</CardTitle>
-            <CardDescription className="text-[12px]">
-              Adjust partner access and privacy settings.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableCaption>Settings for each partner</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-left w-full">Name</TableHead>
-                  <TableHead className="text-right">Settings</TableHead>
-                  <TableHead className="text-right">Message</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {partners.map((partner) => (
-                  <TableRow key={partner.name}>
-                    <TableCell className="text-left font-medium">
-                      {partner.name}
-                    </TableCell>
-
-                    <TableCell className="text-right">
-                      <PartnershipSettings
-                        partner={partner}
-                        setPartners={setPartners}
+          <ul className="space-y-4 mt-4">
+            {partners.map((partner) => (
+              <Card key={partner.email}>
+                <CardHeader>
+                  <CardTitle className="flex items-center justify-between">
+                    <span>{partner.name}</span>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Settings className="w-5 h-5 dark:text-white hover:cursor-pointer" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuRadioGroup
+                          value={partner.accessLevel}
+                          onValueChange={(value) =>
+                            handleAccessLevelChange(partner.name, value)
+                          }
+                        >
+                          <DropdownMenuRadioItem value="view-only">
+                            View Only
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="edit">
+                            Edit
+                          </DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="admin">
+                            Admin
+                          </DropdownMenuRadioItem>
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </CardTitle>
+                  <CardDescription>{partner.email}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-lg font-bold mb-4">
+                    Contribution: ${partner.contribution}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Label className="dark:text-white">
+                        Show Transactions
+                      </Label>
+                      <Checkbox
+                        checked={partner.privacy.showTransactions}
+                        onCheckedChange={(value) =>
+                          handlePrivacyChange(
+                            partner.name,
+                            "showTransactions",
+                            value
+                          )
+                        }
                       />
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DrawerDemoSingle partner={partner} />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Label className="dark:text-white">
+                        Hide Sensitive Data
+                      </Label>
+                      <Checkbox
+                        checked={partner.privacy.hideSensitiveData}
+                        onCheckedChange={(value) =>
+                          handlePrivacyChange(
+                            partner.name,
+                            "hideSensitiveData",
+                            value
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <DrawerDemoSingle partner={partner} />
+                  <Button variant="outline" className="dark:text-white">
+                    Remove
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </ul>
+        </div>
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h2 className="text-xl font-bold dark:text-white mb-4">
+            Financial Information
+          </h2>
+          <SharedFinancial
+            partners={partners.map((partner) => ({
+              name: partner.name,
+              contribution: partner.contribution,
+              color: partner.color,
+            }))}
+          />
+        </div>
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h2 className="text-xl font-bold dark:text-white mb-4">
+            Partnership Settings
+          </h2>
+          <PartnershipSettings partners={partners} />
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-between">
+        <h2 className="text-xl font-bold dark:text-white mt-6">
+          Monthly Contributions
+        </h2>
+        <ContributionTracking data={monthlyContributions} />
+      </div>
+      <div className="flex items-center justify-center mt-6">
+        <DrawerDemo partners={partners} />
       </div>
     </div>
   );
 };
+
+function generateMonthlyContributions(partners) {
+  return partners.map((partner) => ({
+    id: partner.email,
+    data: Array.from({ length: 12 }, (_, i) => ({
+      x: `Month ${i + 1}`,
+      y: Math.floor(Math.random() * 1000),
+    })),
+  }));
+}
 
 export default Partnership;
