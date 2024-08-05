@@ -47,36 +47,31 @@ const invoices = [
 ];
 
 const pieChartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { name: "Stocks", value: 275, fill: "#FF6384" },
+  { name: "Bonds", value: 200, fill: "#36A2EB" },
+  { name: "Real Estate", value: 287, fill: "#FFCE56" },
+  { name: "Commodities", value: 173, fill: "#4BC0C0" },
+  { name: "Cash", value: 190, fill: "#9966FF" },
 ];
 
 const lineChartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", Alice: 186, Bob: 305, Charlie: 80 },
+  { month: "February", Alice: 305, Bob: 200, Charlie: 200 },
+  { month: "March", Alice: 237, Bob: 120, Charlie: 120 },
+  { month: "April", Alice: 73, Bob: 190, Charlie: 190 },
+  { month: "May", Alice: 209, Bob: 130, Charlie: 130 },
+  { month: "June", Alice: 214, Bob: 140, Charlie: 140 },
 ];
 
 const chartConfig = {
-  desktop: { label: "Desktop", color: "hsl(var(--chart-1))" },
-  mobile: { label: "Mobile", color: "hsl(var(--chart-2))" },
-  visitors: { label: "Visitors" },
-  chrome: { label: "Chrome", color: "hsl(var(--chart-1))" },
-  safari: { label: "Safari", color: "hsl(var(--chart-2))" },
-  firefox: { label: "Firefox", color: "hsl(var(--chart-3))" },
-  edge: { label: "Edge", color: "hsl(var(--chart-4))" },
-  other: { label: "Other", color: "hsl(var(--chart-5))" },
+  Alice: { label: "Alice", color: "#FF6384" },
+  Bob: { label: "Bob", color: "#36A2EB" },
+  Charlie: { label: "Charlie", color: "#FFCE56" },
 };
 
 const Investment = () => {
-  const totalVisitors = useMemo(() => {
-    return pieChartData.reduce((acc, curr) => acc + curr.visitors, 0);
+  const totalValue = useMemo(() => {
+    return pieChartData.reduce((acc, curr) => acc + curr.value, 0);
   }, []);
 
   return (
@@ -134,15 +129,17 @@ const Investment = () => {
       </Table>
 
       <div className="flex flex-col lg:flex-row gap-4 mb-4 mt-8">
-        <Card className="flex-1 h-[380px]">
+        <Card className="flex-1 lg:flex-[0.5] pb-4">
           <CardHeader>
-            <CardTitle>Pie Chart - Donut with Text</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
+            <CardTitle>Asset Allocation</CardTitle>
+            <CardDescription>
+              Detailed view of each asset's contribution
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-1 pb-0">
             <ChartContainer
               config={chartConfig}
-              className="mx-auto w-full lg:w-[200px] lg:h-[200px]"
+              className="mx-auto w-full h-[40vh] lg:h-[200px]"
             >
               <PieChart>
                 <ChartTooltip
@@ -151,10 +148,11 @@ const Investment = () => {
                 />
                 <Pie
                   data={pieChartData}
-                  dataKey="visitors"
-                  nameKey="browser"
+                  dataKey="value"
+                  nameKey="name"
                   innerRadius={60}
-                  strokeWidth={5}
+                  outerRadius={80}
+                  strokeWidth={3}
                 >
                   <Label
                     content={({ viewBox }) => {
@@ -171,14 +169,14 @@ const Investment = () => {
                               y={viewBox.cy}
                               className="fill-foreground text-xl font-bold"
                             >
-                              {totalVisitors.toLocaleString()}
+                              {totalValue.toLocaleString()}
                             </tspan>
                             <tspan
                               x={viewBox.cx}
                               y={(viewBox.cy || 0) + 24}
                               className="fill-muted-foreground"
                             >
-                              Visitors
+                              Total
                             </tspan>
                           </text>
                         );
@@ -188,26 +186,31 @@ const Investment = () => {
                 </Pie>
               </PieChart>
             </ChartContainer>
+            <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-2 lg:gap-4">
+              {pieChartData.map((entry, index) => (
+                <div key={`item-${index}`} className="flex items-center gap-2">
+                  <span
+                    className="block w-3 h-3 rounded-full"
+                    style={{ backgroundColor: entry.fill }}
+                  />
+                  <span className="text-sm">{entry.name}</span>
+                </div>
+              ))}
+            </div>
           </CardContent>
-          <CardFooter className="flex-col gap-2 text-sm">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="leading-none text-muted-foreground">
-              Showing total visitors for the last 6 months
-            </div>
-          </CardFooter>
         </Card>
 
-        <Card className="flex-1 h-[380px]">
+        <Card className="flex-1">
           <CardHeader>
-            <CardTitle>Line Chart - Dots</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
+            <CardTitle>Performance Over Time</CardTitle>
+            <CardDescription>
+              Trends and changes in contributions over time
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={chartConfig} className="w-full h-[200px]">
               <LineChart data={lineChartData} margin={{ left: 12, right: 12 }}>
-                <CartesianGrid vertical={false} />
+                <CartesianGrid vertical={false} strokeDasharray="3 3" />
                 <XAxis
                   dataKey="month"
                   tickLine={false}
@@ -217,63 +220,99 @@ const Investment = () => {
                 />
                 <ChartTooltip
                   cursor={false}
-                  content={<ChartTooltipContent hideLabel />}
+                  content={<ChartTooltipContent />}
                 />
                 <Line
-                  dataKey="desktop"
+                  dataKey="Alice"
                   type="natural"
-                  stroke="var(--color-desktop)"
+                  stroke={chartConfig.Alice.color}
                   strokeWidth={2}
-                  dot={{ fill: "var(--color-desktop)" }}
+                  dot={{ fill: chartConfig.Alice.color }}
+                  activeDot={{ r: 4 }}
+                />
+                <Line
+                  dataKey="Bob"
+                  type="natural"
+                  stroke={chartConfig.Bob.color}
+                  strokeWidth={2}
+                  dot={{ fill: chartConfig.Bob.color }}
+                  activeDot={{ r: 4 }}
+                />
+                <Line
+                  dataKey="Charlie"
+                  type="natural"
+                  stroke={chartConfig.Charlie.color}
+                  strokeWidth={2}
+                  dot={{ fill: chartConfig.Charlie.color }}
                   activeDot={{ r: 4 }}
                 />
               </LineChart>
             </ChartContainer>
+            <div className="mt-4 flex flex-wrap justify-center gap-4">
+              <div className="flex items-center gap-2">
+                <span
+                  className="block w-3 h-3 rounded-full"
+                  style={{ backgroundColor: chartConfig.Alice.color }}
+                />
+                <span className="text-sm">Alice</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="block w-3 h-3 rounded-full"
+                  style={{ backgroundColor: chartConfig.Bob.color }}
+                />
+                <span className="text-sm">Bob</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="block w-3 h-3 rounded-full"
+                  style={{ backgroundColor: chartConfig.Charlie.color }}
+                />
+                <span className="text-sm">Charlie</span>
+              </div>
+            </div>
           </CardContent>
-          <CardFooter className="flex-col items-start gap-2 text-sm">
-            <div className="flex gap-2 font-medium leading-none">
+          <CardFooter className="flex-col gap-2 text-sm">
+            <div className="flex items-center gap-2 font-medium leading-none">
               Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
             </div>
             <div className="leading-none text-muted-foreground">
-              Showing total visitors for the last 6 months
+              Showing total asset allocation for the last 6 months
             </div>
           </CardFooter>
         </Card>
       </div>
 
-      <Card className="w-full max-w-md mx-auto lg:mx-0">
+      <Card className="mb-8 mt-8">
         <CardHeader>
-          <CardTitle>Transaction History</CardTitle>
+          <CardTitle>Next steps</CardTitle>
+          <CardDescription>
+            Ensure your data is accurate and complete.
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Name</h3>
-              <Badge
-                variant="outline"
-                className="text-green-500 border-green-500"
-              >
-                Confirmed
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-              <div>Date: 27th July 2024</div>
-              <div>Time: 1:00pm</div>
-            </div>
-            <div className="flex items-center justify-between font-medium">
-              <div>Total Cost:</div>
-              <div>$1200</div>
-            </div>
-            <div className="flex items-center justify-between">
-              <Link
-                href="#"
-                className="text-blue-700 hover:underline"
-                prefetch={false}
-              >
-                View Details
-              </Link>
-            </div>
-          </div>
+          <ul className="mt-2 grid gap-2 lg:grid-cols-2">
+            <li className="flex items-center gap-2">
+              <Badge className="p-2">1</Badge>
+              <span className="leading-none">
+                Complete your account information
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Badge className="p-2">2</Badge>
+              <span className="leading-none">Add any missing transactions</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Badge className="p-2">3</Badge>
+              <span className="leading-none">Verify your linked accounts</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Badge className="p-2">4</Badge>
+              <span className="leading-none">
+                Review and categorize expenses
+              </span>
+            </li>
+          </ul>
         </CardContent>
       </Card>
     </div>
