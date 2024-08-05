@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   flexRender,
   getCoreRowModel,
@@ -11,8 +12,11 @@ import {
   ChevronDownCircleIcon,
   ListFilterIcon,
   MoreHorizontal,
+  CalendarIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+import { Calendar } from '../ui/calendar';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
   DropdownMenu,
@@ -35,9 +39,6 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { cn } from '@/lib/utils';
 import { addDays, parseISO } from 'date-fns';
-import { useState } from 'react';
-import { CalendarIcon } from 'lucide-react';
-import { Calendar } from '../ui/calendar';
 import {
   Dialog,
   DialogContent,
@@ -309,6 +310,13 @@ export function TransactionTable() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingRowId, setEditingRowId] = useState(null);
   const [editDescription, setEditDescription] = useState('');
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [newTransaction, setNewTransaction] = useState({
+    date: '',
+    amount: '',
+    category: '',
+    description: '',
+  });
 
   const table = useReactTable({
     data,
@@ -393,14 +401,39 @@ export function TransactionTable() {
     document.body.removeChild(link);
   };
 
+  const handleAddTransaction = () => {
+    setIsAddDialogOpen(true);
+  };
+
+  const handleSaveNewTransaction = () => {
+    const { date, amount, category, description } = newTransaction;
+
+    if (!date || !amount || !category || !description) {
+      alert('Please fill out all fields before saving.');
+      return;
+    }
+
+    const newId = data.length ? Math.max(...data.map((d) => d.id)) + 1 : 1;
+    const updatedData = [...data, { ...newTransaction, id: newId }];
+    setData(updatedData);
+    setNewTransaction({ date: '', amount: '', category: '', description: '' });
+    setIsAddDialogOpen(false);
+  };
+
+  const categories = ['Groceries', 'Dining', 'Shopping', 'Utilities', 'Rent'];
+
+  const handleNewCategoryChange = (category) => {
+    setNewTransaction({ ...newTransaction, category });
+  };
+
   return (
     <div className='w-full container'>
-    <div className='text-2xl font-semibold mt-5 dark:text-white'>
-  Transactions
-</div>
-<p className='text-muted-foreground dark:text-white/50'>
-  Monitor and manage your recurring expenses efficiently.
-</p>
+      <div className='text-2xl font-semibold mt-5 dark:text-white'>
+        Transactions
+      </div>
+      <p className='text-muted-foreground dark:text-white/50'>
+        Monitor and manage your recurring expenses efficiently.
+      </p>
 
       <div className='flex flex-col lg:flex-row items-center py-4'>
         <Input
@@ -469,6 +502,9 @@ export function TransactionTable() {
           </DropdownMenu>
           <Button onClick={handleExportCSV} className=' dark:text-black'>
             Export
+          </Button>
+          <Button onClick={handleAddTransaction} className='dark:text-black'>
+            Add
           </Button>
         </div>
       </div>
@@ -613,6 +649,65 @@ export function TransactionTable() {
           />
           <DialogFooter>
             <Button onClick={handleSaveDescription}>Save</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className='dark:text-white'>
+              Add New Transaction
+            </DialogTitle>
+          </DialogHeader>
+          <Input
+            required
+            placeholder='Date'
+            value={newTransaction.date}
+            type='calendar'
+            onChange={(e) => setNewTransaction({ ...newTransaction, date: e.target.value })}
+            className='mb-4 dark:text-white'
+          />
+          <Input
+            placeholder='Amount'
+            value={newTransaction.amount}
+            type='number'
+            onChange={(e) => setNewTransaction({ ...newTransaction, amount: e.target.value })}
+            className='mb-4 dark:text-white'
+          />
+
+          <Input
+            placeholder='Description'
+            value={newTransaction.description}
+            onChange={(e) => setNewTransaction({ ...newTransaction, description: e.target.value })}
+            className='mb-4 dark:text-white'
+          />
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant='outline' className='flex items-center gap-2'>
+                <span className='dark:text-white'>
+                  {newTransaction.category || 'Select Category'}
+                </span>
+                <ChevronDownCircleIcon className='w-4 h-4 dark:text-white' />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align='end' className='w-48'>
+              <DropdownMenuLabel>Categories</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {categories.map((category) => (
+                <DropdownMenuItem
+                  key={category}
+                  onClick={() => handleNewCategoryChange(category)}
+                >
+                  {category}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
+          <DialogFooter>
+            <Button variant='outline' onClick={() => setIsAddDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleSaveNewTransaction}>Save</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
