@@ -352,7 +352,7 @@ const Partnership = () => {
       <div className="gap-4">
         <div className="header-section p-4 mb-4 flex flex-col md:flex-row items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold dark:text-white">
+            <h1 className="text-2xl font-medium dark:text-white">
               Manage Partnership
             </h1>
             <p className="text-sm text-gray-600 dark:text-gray-400">
