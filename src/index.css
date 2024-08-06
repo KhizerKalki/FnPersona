@@ -82,3 +82,83 @@
   }
 }
 
+.custom-calendar .rbc-calendar,
+.custom-calendar .rbc-toolbar,
+.custom-calendar .rbc-month-view,
+.custom-calendar .rbc-time-view {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-calendar .rbc-header {
+  border-color: gray;
+}
+
+.custom-calendar.bg-black {
+  background-color: black;
+  color: white;
+}
+
+.custom-calendar.bg-black .rbc-header {
+  background-color: black;
+  color: white;
+}
+
+.custom-calendar.bg-black .rbc-day-bg,
+.custom-calendar.bg-black .rbc-time-content {
+  background-color: black;
+  border-color: gray;
+}
+
+.custom-calendar.bg-black .rbc-event {
+  background-color: white;
+  color: black;
+}
+
+.custom-calendar.bg-black .rbc-selected {
+  background-color: #444;
+}
+
+.custom-calendar.bg-black .rbc-show-more,
+.custom-calendar.bg-black .rbc-toolbar button,
+.custom-calendar.bg-black .rbc-toolbar label {
+  color: white;
+}
+
+.custom-calendar.bg-black .rbc-time-content > * + * > * {
+  border-top: 1px solid #444;
+}
+.custom-calendar.bg-black .rbc-active {
+  background-color: #444;
+  color: white;
+}
+
+.custom-calendar.bg-white {
+  background-color: white;
+  color: black;
+}
+
+.custom-calendar.bg-white .rbc-header {
+  background-color: white;
+  color: black;
+}
+
+.custom-calendar.bg-white .rbc-day-bg,
+.custom-calendar.bg-white .rbc-time-content {
+  background-color: white;
+  border-color: lightgray;
+}
+
+.custom-calendar.bg-white .rbc-event {
+  background-color: black;
+  color: white;
+}
+
+.custom-calendar.bg-white .rbc-selected {
+  background-color: lightgray;
+}
+
+.custom-calendar.bg-white .rbc-show-more,
+.custom-calendar.bg-white .rbc-toolbar button,
+.custom-calendar.bg-white .rbc-toolbar label {
+  color: black;
+}
