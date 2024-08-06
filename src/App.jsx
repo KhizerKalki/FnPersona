@@ -18,7 +18,6 @@ import { Toaster } from "./components/ui/toaster";
 import DashboardLayout from "./layout/DashboardLayout";
 import Lobby from "./routes/dashboard/Lobby";
 import NetWorth from "./routes/dashboard/NetWorth";
-import Goals from "./routes/dashboard/Goals";
 import Investment from "./routes/dashboard/Investment";
 import Recurring from "./routes/dashboard/Recurring";
 import Settings from "./routes/dashboard/Settings";

@@ -4,7 +4,6 @@ import {
   Settings,
   GoalIcon,
   DollarSign,
-  Wallet,
   Calendar,
   BriefcaseBusinessIcon,
   Calculator,

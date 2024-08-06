@@ -3,7 +3,6 @@ import {
   PanelLeft,
   Search,
   Home,
-  Wallet,
   DollarSign,
   GoalIcon,
   BriefcaseBusinessIcon,
@@ -42,11 +41,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import logo from "../../assets/logo.svg";
-import Firecalculator from "@/routes/dashboard/Firecalculator";
 import { GrTransaction } from "react-icons/gr";
 
 function TopNavbar() {
