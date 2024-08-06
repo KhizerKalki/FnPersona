@@ -54,40 +54,18 @@ function Sidebar() {
             </TooltipTrigger>
             <TooltipContent side="right">Dashboard</TooltipContent>
           </Tooltip>
-
-          <DropdownMenu>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
-                    <DollarSign className="h-5 w-5 activebutton" />
-                    <span className="sr-only">Budget</span>
-                  </button>
-                </DropdownMenuTrigger>
-              </TooltipTrigger>
-              <TooltipContent side="right">Budget</TooltipContent>
-            </Tooltip>
-            <DropdownMenuContent className="w-56 ml-14 mt-[-35px]">
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <NavLink
-                    to="/dashboard/budget/addbudget"
-                    className="flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Add Budget
-                  </NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <NavLink
-                    to="/dashboard/budget/overview"
-                    className="flex items-center px-2 py-2 text-sm dark:text-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Overview Budget
-                  </NavLink>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <NavLink
+                to="/dashboard/budget/overview"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <DollarSign className="h-5 w-5 activebutton" />
+                <span className="sr-only">Budgets</span>
+              </NavLink>
+            </TooltipTrigger>
+            <TooltipContent side="right">Budgets</TooltipContent>
+          </Tooltip>
 
           <Tooltip>
             <TooltipTrigger asChild>
