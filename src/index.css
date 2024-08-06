@@ -77,3 +77,8 @@
   border-radius: 100%;
 }
 
+@layer utilities {
+  .dark .active .activebutton {
+    background-color: white;
+  }
+}
