@@ -22,6 +22,9 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        'custom-dark': '#0c0a09',
+      },
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },

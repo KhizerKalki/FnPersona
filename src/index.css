@@ -162,3 +162,15 @@
 .custom-calendar.bg-white .rbc-toolbar label {
   color: black;
 }
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  padding-right: 1.5rem;
+  background-color: transparent; 
+  border: 0.1px solid rgb(46, 45, 45);
+}
+
+.custom-select::-ms-expand {
+  display: none; 
+}

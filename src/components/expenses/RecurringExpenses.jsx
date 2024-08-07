@@ -355,17 +355,19 @@ export function RecurringExpenses() {
                   <Label htmlFor="frequency" className="dark:text-white">
                     Frequency
                   </Label>
-                  <Input
+                  <select
                     id="frequency"
                     name="frequency"
-                    defaultValue={
-                      selectedExpense?.frequency ||
-                      calendarEvent?.frequency ||
-                      ""
-                    }
-                    required
-                    className="dark:text-white"
-                  />
+                    defaultValue={selectedExpense.frequency}
+                    className="custom-select w-full p-2 dark:text-white dark:bg-custom-dark rounded-md text-sm"
+                    >
+                    <option value="">Select frequency</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                  </select>
+
                   {errors.frequency && (
                     <p className="text-red-500 text-sm">{errors.frequency}</p>
                   )}
