@@ -706,7 +706,7 @@ export function TransactionTable() {
           </DropdownMenu>
           
           <DialogFooter>
-            <Button variant='outline' onClick={() => setIsAddDialogOpen(false)}>Cancel</Button>
+            <Button variant='outline' onClick={() => setIsAddDialogOpen(false)} className='dark:text-white'>Cancel</Button>
             <Button onClick={handleSaveNewTransaction}>Save</Button>
           </DialogFooter>
         </DialogContent>
