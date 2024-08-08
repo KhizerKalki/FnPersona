@@ -124,7 +124,7 @@ export function BudgetBarGraph() {
 
   return (
     <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+      <CardHeader className="flex flex-col items-stretch space-y-0 border-b dark:border-gray-100/10 p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Spending Vs Budget</CardTitle>
           <CardDescription>
@@ -138,7 +138,7 @@ export function BudgetBarGraph() {
               <button
                 key={chart}
                 data-active={activeChart === chart}
-                className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                className="relative z-30 flex flex-1 flex-col justify-center dark:border-gray-100/10 gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
                 onClick={() => setActiveChart(chart)}
               >
                 <span className="text-xs text-muted-foreground">
@@ -162,7 +162,7 @@ export function BudgetBarGraph() {
               right: 12,
             }}
           >
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={false} stroke='rgba(255, 255, 255, 0.1)' />
             <XAxis
               dataKey="date"
               tickLine={false}
