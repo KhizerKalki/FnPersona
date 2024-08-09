@@ -359,8 +359,8 @@ export function RecurringExpenses() {
                     id="frequency"
                     name="frequency"
                     defaultValue={selectedExpense.frequency}
-                    className="custom-select w-full p-2 dark:text-white dark:bg-custom-dark rounded-md text-sm"
-                    >
+                    className="custom-select w-full p-2 dark:text-white dark:bg-custom-dark dark:border-custom-border rounded-md border border-1 text-sm"
+                  >
                     <option value="">Select frequency</option>
                     <option value="Daily">Daily</option>
                     <option value="Weekly">Weekly</option>

@@ -24,6 +24,7 @@ module.exports = {
     extend: {
       colors: {
         'custom-dark': '#0c0a09',
+        'custom-border': 'rgb(46, 45, 45)'
       },
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
