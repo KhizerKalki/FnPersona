@@ -167,14 +167,14 @@ const Investment = () => {
                             <tspan
                               x={viewBox.cx}
                               y={viewBox.cy}
-                              className="fill-foreground text-xl font-bold"
+                              className="text-3xl font-bold fill-black dark:fill-white"
                             >
                               {totalValue.toLocaleString()}
                             </tspan>
                             <tspan
                               x={viewBox.cx}
                               y={(viewBox.cy || 0) + 24}
-                              className="fill-muted-foreground"
+                              className="fill-black dark:fill-white"
                             >
                               Total
                             </tspan>
