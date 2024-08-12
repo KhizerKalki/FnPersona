@@ -5,6 +5,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  CartesianGrid, 
 } from 'recharts';
 import {
     Card,
@@ -59,18 +60,24 @@ const ProgressOverTimeChart = ({ data = progressData }) => {
               data={data}
               margin={{ top: 5, right: 10, left: 10, bottom: 0 }}
             >
-              <XAxis dataKey='date' />
-              <YAxis />
+              <CartesianGrid vertical={false} stroke='rgba(255, 255, 255, 0.1)' />
+              <XAxis 
+              dataKey='date'
+              tickLine={false}
+              axisLine={false}
+              tickMargin={10}
+              />
+              
               <Tooltip content={<CustomTooltip />} />
               <Line
                 type='monotone'
-                strokeWidth={4}
+                strokeWidth={3}
                 dataKey='progress'
                 activeDot={{
                   r: 6,
                   style: { fill: '#1f77b4', opacity: 0.25 },
                 }}
-                stroke='#18191a'
+                stroke='#2643ad'
               />
             </LineChart>
           </ResponsiveContainer>
