@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import { ModeToggle } from '../theme/mode-toggle';
-import { motion } from 'framer-motion';
-import logo from '../../assets/logo.svg';
-import { useAuth } from '@/context/AuthContext';
+import { Link, useLocation } from "react-router-dom";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "../theme/mode-toggle";
+import { motion } from "framer-motion";
+import logo from "../../assets/logo.svg";
+import { useAuth } from "@/context/AuthContext";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,67 +15,84 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+} from "@/components/ui/alert-dialog";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const [isSheetOpen, setSheetOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setSheetOpen(false);
+  }, [location]);
+
+  const handleLinkClick = () => {
+    setSheetOpen(false);
+  };
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className='fixed top-0 left-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-1 border-gray-200 dark:border-white/20 bg-white dark:bg-black'
+      className="fixed top-0 left-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-1 border-gray-200 dark:border-white/20 bg-white dark:bg-black"
     >
-      <div className='container flex h-16 items-center justify-between px-4 md:px-6 '>
-        <div className='flex items-center gap-5'>
+      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="flex items-center gap-5">
           <Link
-            to='/'
-            className='flex items-center gap-2 text-lg font-semibold'
+            to="/"
+            className="flex items-center gap-2 text-lg font-semibold"
+            onClick={handleLinkClick}
           >
             <img
               src={logo}
-              className='h-5 sm:h-6 w-auto dark:invert'
-              alt='logo'
+              className="h-5 sm:h-6 w-auto dark:invert"
+              alt="logo"
             />
-            <p className='sm:text-[18px] text-[15px]'>FnPersona</p>
+            <p className="sm:text-[18px] text-[15px]">FnPersona</p>
           </Link>
-          <div className='hidden md:flex gap-5 ml-2 pt-1'>
+          <div className="hidden md:flex gap-5 ml-2 pt-1">
             <Link
-              to='/'
-              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
+              to="/"
+              className="hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500"
+              onClick={handleLinkClick}
             >
               Home
             </Link>
             <Link
-              to='/about'
-              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
+              to="/about"
+              className="hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500"
+              onClick={handleLinkClick}
             >
               About
             </Link>
             <Link
-              to='/services'
-              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
+              to="/services"
+              className="hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500"
+              onClick={handleLinkClick}
             >
               Services
             </Link>
           </div>
         </div>
-        <nav className='hidden gap-6 text-sm font-medium md:flex items-center'>
-          <Button variant='outline'>Learn more</Button>
+        <nav className="hidden gap-6 text-sm font-medium md:flex items-center">
+          <Button variant="outline">Learn more</Button>
           <ModeToggle />
           {user ? (
             <>
-              <span className='font-medium text-gray-700 dark:text-gray-300'>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
                 Welcome, {user.name}
               </span>
               <AlertDialog>
-                <Link to='/dashboard/lobby'>
-                  <Button className='font-medium'>Dashboard</Button>
+                <Link to="/dashboard/lobby">
+                  <Button className="font-medium" onClick={handleLinkClick}>
+                    Dashboard
+                  </Button>
                 </Link>
 
                 <AlertDialogTrigger asChild>
-                  <Button variant='outline' className='font-medium'>
+                  <Button variant="outline" className="font-medium">
                     Logout
                   </Button>
                 </AlertDialogTrigger>
@@ -89,7 +106,7 @@ const Navbar = () => {
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel className='text-white'>
+                    <AlertDialogCancel className="text-white">
                       Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction onClick={logout}>
@@ -101,58 +118,73 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to='/signin'>
-                <Button variant='primary' className='font-medium'>
+              <Link to="/signin">
+                <Button
+                  variant="primary"
+                  className="font-medium"
+                  onClick={handleLinkClick}
+                >
                   Sign in
                 </Button>
               </Link>
-              <Link to='/signup'>
-                <Button className='font-medium'>Sign up</Button>
+              <Link to="/signup">
+                <Button className="font-medium" onClick={handleLinkClick}>
+                  Sign up
+                </Button>
               </Link>
             </>
           )}
         </nav>
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
-            <Button variant='outline' size='icon' className='md:hidden'>
-              <MenuIcon className='h-6 w-6 dark:text-white' />
-              <span className='sr-only'>Toggle navigation menu</span>
+            <Button variant="outline" size="icon" className="md:hidden">
+              <MenuIcon className="h-6 w-6 dark:text-white" />
+              <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent
-            side='right'
-            className='w-full max-w-xs bg-white p-6 dark:text-white'
+            side="right"
+            className="w-full max-w-xs bg-white p-6 dark:text-white"
           >
-            <div className='flex flex-col gap-6 text-sm font-medium dark:text-white'>
-              <Link to='/' className='hover:underline hover:underline-offset-4'>
+            <div className="flex flex-col gap-6 text-sm font-medium dark:text-white">
+              <Link
+                to="/"
+                className="hover:underline hover:underline-offset-4"
+                onClick={handleLinkClick}
+              >
                 Home
               </Link>
               <Link
-                to='/about'
-                className='hover:underline hover:underline-offset-4'
+                to="/about"
+                className="hover:underline hover:underline-offset-4"
+                onClick={handleLinkClick}
               >
                 About
               </Link>
               <Link
-                to='/services'
-                className='hover:underline hover:underline-offset-4'
+                to="/services"
+                className="hover:underline hover:underline-offset-4"
+                onClick={handleLinkClick}
               >
                 Services
               </Link>
               <Link
-                to='/contact'
-                className='hover:underline hover:underline-offset-4'
+                to="/contact"
+                className="hover:underline hover:underline-offset-4"
+                onClick={handleLinkClick}
               >
                 Contact
               </Link>
               {user ? (
                 <>
-                  <Link to='/dashboard/lobby'>
-                    <p className='font-medium'>Dashboard</p>
+                  <Link to="/dashboard/lobby">
+                    <p className="font-medium" onClick={handleLinkClick}>
+                      Dashboard
+                    </p>
                   </Link>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <Button variant='outline' className='font-medium'>
+                      <Button variant="outline" className="font-medium">
                         Logout
                       </Button>
                     </AlertDialogTrigger>
@@ -177,14 +209,16 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    to='/signin'
-                    className='hover:underline hover:underline-offset-4'
+                    to="/signin"
+                    className="hover:underline hover:underline-offset-4"
+                    onClick={handleLinkClick}
                   >
                     Sign in
                   </Link>
                   <Link
-                    to='/signup'
-                    className='hover:underline hover:underline-offset-4'
+                    to="/signup"
+                    className="hover:underline hover:underline-offset-4"
+                    onClick={handleLinkClick}
                   >
                     Sign up
                   </Link>
@@ -202,19 +236,19 @@ const MenuIcon = (props) => {
   return (
     <svg
       {...props}
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <line x1='4' x2='20' y1='12' y2='12' />
-      <line x1='4' x2='20' y1='6' y2='6' />
-      <line x1='4' x2='20' y1='18' y2='18' />
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
     </svg>
   );
 };
