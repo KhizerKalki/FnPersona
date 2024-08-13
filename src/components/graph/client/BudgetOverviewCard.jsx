@@ -60,7 +60,7 @@ function BudgetOverviewCard() {
               <Tooltip content={<CustomTooltip />} />
               <Bar
                 dataKey="subscription"
-                fill="#0aadff"
+                fill="#18191a"
                 className="dark:fill-white"
               />
             </BarChart>

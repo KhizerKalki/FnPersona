@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent , CardTitle} from '@/components/ui/card';
 
 const notifications = [
   {
@@ -43,7 +43,7 @@ const NotificationTwo = () => {
           <div className='flex flex-col sm:flex-row justify-between'>
             <div className='w-full flex flex-col sm:pr-2 mb-4 sm:mb-0'>
               <div className='border-b border-gray-600 dark:border-gray-300 pb-3 mb-3'>
-                <h3 className='text-lg font-semibold'>Notifications</h3>
+              <CardTitle className='text-lg' >Notifications</CardTitle>
               </div>
               <div className='flex flex-col gap-3'>
                 {notifications.map((notification, index) => (

@@ -136,7 +136,7 @@ export function SharedFinancial() {
     <Card className=''>
       <CardHeader className='flex flex-col items-stretch space-y-0 border-b dark:border-gray-100/10 p-0 sm:flex-row'>
         <div className='flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6'>
-          <CardTitle className='text-md' >Shared Financial Dashboard</CardTitle>
+          <CardTitle className='text-lg' >Shared Financial Dashboard</CardTitle>
           <CardDescription className='text-[12px]'>
             Showing total financial data for the last 3 months
           </CardDescription>

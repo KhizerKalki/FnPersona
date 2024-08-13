@@ -123,11 +123,11 @@ export function BudgetBarGraph() {
   );
 
   return (
-    <Card>
+    <Card className='h-[423px]'>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b dark:border-gray-100/10 p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Spending Vs Budget</CardTitle>
-          <CardDescription>
+        <CardTitle className='text-lg' >Spending Vs Budget</CardTitle>
+        <CardDescription className='text-[12px]'>
             Showing total visitors for the last 3 months
           </CardDescription>
         </div>
@@ -152,7 +152,7 @@ export function BudgetBarGraph() {
           })}
         </div>
       </CardHeader>
-      <CardContent className="px-2 sm:p-6">
+      <CardContent className="px-2 sm:p-6 mt-4">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
           <BarChart
             accessibilityLayer

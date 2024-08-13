@@ -90,7 +90,7 @@ const Firecalculator = () => {
     <div className="container mt-6 py-8 px-4 md:px-6">
       <header className="mb-8">
         <h1 className="text-2xl font-medium dark:text-white animate-fadeIn">FIRE Calculator</h1>
-        <p className="text-muted-foreground dark:text-white/50 animate-fadeIn">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           Calculate your path to Financial Independence and Early Retirement.
         </p>
       </header>
@@ -154,13 +154,13 @@ const Firecalculator = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
             <div className="w-full">
-              <Card className="h-[400px]">
+              <Card className="h-[500px]">
                 <CardHeader>
-                  <CardTitle>Investment Growth</CardTitle>
-                  <CardDescription>Projection over time</CardDescription>
+                <CardTitle className='text-lg' >Investment Growth</CardTitle>
+                <CardDescription className='text-[12px]'>Projection over time</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[240px]">
-                  <ChartContainer config={chartConfig} className="h-[200px] w-full">
+                <CardContent className="h-[310px]">
+                  <ChartContainer config={chartConfig} className="h-[260px] w-full">
                     <LineChart
                       data={projections.graphData}
                       margin={{ top: 24, left: 24, right: 24 }}
@@ -208,9 +208,11 @@ const Firecalculator = () => {
                 </CardFooter>
               </Card>
             </div>
-            <div className="w-full mb-4">
-              <h3 className="text-xl font-semibold dark:text-white mb-2">Investment Growth Table</h3>
-              <table className="w-full border-collapse border border-gray-200 dark:border-gray-700">
+            <Card className='px-8 py-6'>
+            <div className="w-full">
+            <CardTitle className='text-lg dark:text-white mb-2' >Investment Growth Table</CardTitle>
+            <CardDescription className='text-[12px] mb-7'>Table view</CardDescription>
+            <table className="w-full border-collapse border border-gray-200 dark:border-gray-700">
                 <thead>
                   <tr className="bg-gray-100 dark:bg-gray-700 ">
                     <th className="border border-gray-200 dark:border-gray-700 px-4 py-1 text-left dark:text-white">Age</th>
@@ -226,7 +228,11 @@ const Firecalculator = () => {
                   ))}
                 </tbody>
               </table>
+
+            
+              
             </div>
+            </Card>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           <Card className="col-span-1">
@@ -235,7 +241,7 @@ const Firecalculator = () => {
                   <div className='flex flex-col sm:flex-row justify-between w-full'>
                     <div className='w-full flex flex-col sm:pr-2 mb-4 sm:mb-0'>
                       <div className='border-b border-gray-900 dark:border-gray-300 pb-3 mb-3'>
-                        <h3 className='text-lg font-semibold'>Notifications</h3>
+                      <CardTitle className='text-lg' >Notifications</CardTitle>
                       </div>
                       <div className='flex flex-col gap-3'>
                         <div className='relative p-3 rounded bg-gray-100 dark:bg-gray-800 shadow-md border-l-4 border-green-500 flex justify-between items-center transition-transform transform hover:scale-105'>
@@ -273,7 +279,10 @@ const Firecalculator = () => {
               <CardContent>
                 <div className=' py-5 rounded-lg shadow-lg text-black dark:text-white'>
                   <div>
-                    <h2 className="text-xl font-bold mb-4 ">Recommendations</h2>
+                    <div className='border-b border-gray-900 dark:border-gray-300 pb-3 mb-3'>
+                      <CardTitle className='text-lg ' >Recommendations</CardTitle>
+                    </div>
+                  
                     <div className="space-y-2 ">
                       <div className="relative p-3 rounded bg-gray-100 dark:bg-gray-800 shadow-md flex justify-between items-center">
                         <p className="font-medium">Increase savings rate by 5%</p>

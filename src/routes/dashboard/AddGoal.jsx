@@ -267,7 +267,7 @@ return (
         <div className='text-2xl font-medium dark:text-white'>
             Financial Goals
         </div>
-        <p className='text-muted-foreground dark:text-white/50'>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
             Set and track your financial goals.
         </p>
         </header>
@@ -284,13 +284,13 @@ return (
         >
             <CardContent className='grid gap-2 p-5'>
             <div className='flex items-center justify-between'>
-                <h3 className='text-lg font-semibold dark:text-white'>
+            <CardTitle className='text-lg' >
                 {goal.name}
-                </h3>
+                </CardTitle>
                 <div className='flex items-center space-x-2'>
-                <div className='text-primary font-semibold dark:text-white'>
+                <CardTitle className='text-lg' >
                     ${goal.currentAmount} / ${goal.targetAmount}
-                </div>
+                </CardTitle>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                     <Button variant='outline' className='p-1'>

@@ -15,7 +15,7 @@ const Overviews = () => {
           <div className="text-2xl font-medium mt-5 dark:text-white">
             Budget Overview
           </div>
-          <p className="text-muted-foreground mb-4 mt-1 dark:text-white/50">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Get a clear snapshot of your spending and savings.
           </p>
         </div>

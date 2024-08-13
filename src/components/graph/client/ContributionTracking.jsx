@@ -69,7 +69,7 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
     <div className='contribution-tracking my-4 gap-3 items-center grid grid-cols-1 lg:grid-cols-3'>
       <Card className='flex flex-col'>
         <CardHeader className='items-center pb-0'>
-          <CardTitle className='text-md text-center'>
+          <CardTitle className='text-lg' >
             Individual Contribution Breakdown
           </CardTitle>
           <CardDescription className='text-[12px]'>
@@ -118,14 +118,14 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
       <div className='w-full col-span-2 mt-4 lg:mt-0'>
         <Card className='flex flex-col pb-5'>
           <CardHeader className='items-center pb-2'>
-            <CardTitle className='text-md text-center'>
+          <CardTitle className='text-lg' >
               Monthly Contribution History
             </CardTitle>
             <CardDescription className='text-[12px]'>
               Trends and changes in contributions over time
             </CardDescription>
           </CardHeader>
-          <CardContent className='flex-1 pb-0'>
+          <CardContent className='flex-1 pb-0 '>
             {monthlyContributions?.length > 0 ? (
               <ChartContainer config={newChartConfig} className="w-full h-[250px]">
                 <ResponsiveContainer width='100%' height={250}>

@@ -7,7 +7,7 @@ const BudgetCards = () => {
     <div className='grid gap-3'>
       <Card className='dark:bg-black'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-          <CardTitle className='text-sm font-medium'>Total Income</CardTitle>
+        <CardTitle className='text-lg' >Total Income</CardTitle>
           <DollarSign className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
@@ -20,7 +20,7 @@ const BudgetCards = () => {
       </Card>
       <Card className='dark:bg-black'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-          <CardTitle className='text-sm font-medium'>Total Expense</CardTitle>
+        <CardTitle className='text-lg' >Total Expense</CardTitle>
           <GiExpense className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>
@@ -33,7 +33,7 @@ const BudgetCards = () => {
       </Card>
       <Card className='dark:bg-black'>
         <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-          <CardTitle className='text-sm font-medium'>Remaining Budget</CardTitle>
+        <CardTitle className='text-lg' >Remaining Budget</CardTitle>
           <Coins className='h-4 w-4 text-muted-foreground' />
         </CardHeader>
         <CardContent>

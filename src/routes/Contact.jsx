@@ -61,10 +61,10 @@ export default function Contact() {
         className="absolute inset-0 z-0"
         style={{
           height: "900px",
-          transform: "translateX(-1%) translateY(-15%) scale(1)",
+          transform: "translateX(-5%) translateY(-5%) scaleX(1.6) scaleY(1.5)",
         }}
       >
-        <Spline scene="https://prod.spline.design/bi0QpAoYBbXUaV-B/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/BejJBEBM7q5W2FKv/scene.splinecode" />
         <div className="absolute inset-0"></div>
       </div>
 

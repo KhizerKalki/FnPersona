@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 const Notification = () => {
   return (
@@ -8,7 +8,7 @@ const Notification = () => {
           <div className='flex flex-col sm:flex-row justify-between'>
             <div className='w-full flex flex-col sm:pr-2 mb-4 sm:mb-0'>
               <div className='border-b border-gray-600 dark:border-gray-300 pb-3 mb-3'>
-                <h3 className='text-lg font-semibold'>Notifications</h3>
+              <CardTitle className='text-lg' >Notifications</CardTitle>
               </div>
               <div className='flex flex-col gap-3'>
                 <div className='relative p-3 rounded bg-gray-100 dark:bg-gray-800 shadow-md border-l-4 border-green-500 flex justify-between items-center transition-transform transform hover:scale-105'>

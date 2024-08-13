@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent , CardTitle} from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -220,7 +220,7 @@ export function RecurringExpenses() {
           <h1 className="text-2xl font-medium dark:text-white">
             Recurring Expenses
           </h1>
-          <p className="text-muted-foreground dark:text-white/50">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Manage and track your recurring expenses.
           </p>
         </header>
@@ -239,7 +239,7 @@ export function RecurringExpenses() {
           >
             <CardContent className="grid gap-2 p-5">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold">{expense.name}</h3>
+              <CardTitle className='text-lg' >{expense.name}</CardTitle>
                 <div className="text-primary font-semibold">
                   ${expense.amount.toFixed(2)}
                 </div>

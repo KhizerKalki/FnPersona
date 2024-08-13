@@ -81,7 +81,7 @@ const Investment = () => {
           <h1 className="text-2xl font-medium dark:text-white animate-fadeIn">
             Investments
           </h1>
-          <p className="text-muted-foreground dark:text-white/50 animate-fadeIn">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Calculate your path to Financial Independence and Early Retirement.
           </p>
         </header>
@@ -131,8 +131,8 @@ const Investment = () => {
       <div className="flex flex-col lg:flex-row gap-4 mb-4 mt-8">
         <Card className="flex-1 lg:flex-[0.5] pb-4">
           <CardHeader>
-            <CardTitle>Asset Allocation</CardTitle>
-            <CardDescription>
+          <CardTitle className='text-lg' >Asset Allocation</CardTitle>
+          <CardDescription className='text-[12px]'>
               Detailed view of each asset's contribution
             </CardDescription>
           </CardHeader>
@@ -202,8 +202,8 @@ const Investment = () => {
 
         <Card className="flex-1">
           <CardHeader>
-            <CardTitle>Performance Over Time</CardTitle>
-            <CardDescription>
+          <CardTitle className='text-lg' >Performance Over Time</CardTitle>
+          <CardDescription className='text-[12px]'>
               Trends and changes in contributions over time
             </CardDescription>
           </CardHeader>
@@ -285,8 +285,8 @@ const Investment = () => {
 
       <Card className="mb-8 mt-8">
         <CardHeader>
-          <CardTitle>Next steps</CardTitle>
-          <CardDescription>
+        <CardTitle className='text-lg' >Next steps</CardTitle>
+        <CardDescription className='text-[12px]'>
             Ensure your data is accurate and complete.
           </CardDescription>
         </CardHeader>

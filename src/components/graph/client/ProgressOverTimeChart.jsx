@@ -50,8 +50,8 @@ const ProgressOverTimeChart = ({ data = progressData }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Progress Over Time</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+      <CardTitle className='text-lg' >Progress Over Time</CardTitle>
+      <CardDescription className='text-[12px]'>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <div className='h-[200px]'>

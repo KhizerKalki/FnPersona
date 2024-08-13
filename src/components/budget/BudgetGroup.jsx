@@ -57,7 +57,7 @@ const BudgetGroup = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-xl font-bold dark:text-white py-5 text-center sm:text-left">
+      <h1 className="text-2xl font-medium dark:text-white py-5 text-center sm:text-left">
         Add Budget
       </h1>
       <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
@@ -157,7 +157,7 @@ const BudgetGroup = () => {
             <Card key={category.id} className="dark:bg-black">
               <CardHeader>
                 <div className="flex justify-between">
-                  <CardTitle className="font-medium text-xl">
+                <CardTitle className='text-lg' >
                     {category.name}
                   </CardTitle>
                   <MdDelete
@@ -170,9 +170,9 @@ const BudgetGroup = () => {
                   />
                 </div>
                 <div className="flex items-center gap-2 justify-between">
-                  <span className="text-lg font-bold">
+                <CardTitle className='text-lg' >
                     ${category.spent} / ${category.budget}
-                  </span>
+                  </CardTitle>
                   <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
                     <DialogTrigger asChild>
                       <Button
@@ -272,11 +272,11 @@ const BudgetGroup = () => {
           {categories.map((category) => (
             <Card key={category.id} className="relative dark:bg-black">
               <CardContent className="flex flex-col items-center justify-center gap-4 py-5">
-                <div className="text-2xl font-bold">{category.name}</div>
+              <CardTitle className='text-lg' >{category.name}</CardTitle>
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold">
+                <CardTitle className='text-lg' >
                     ${category.spent} / ${category.budget}
-                  </span>
+                  </CardTitle>
                 </div>
                 <Progress value={(category.spent / category.budget) * 100} />
                 <div className="flex justify-between items-center w-full">

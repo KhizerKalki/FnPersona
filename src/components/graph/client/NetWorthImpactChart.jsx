@@ -51,8 +51,8 @@ const NetWorthImpactChart = ({ data }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Net Worth Impact Graph</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+      <CardTitle className='text-lg' >Net Worth Impact Graph</CardTitle>
+      <CardDescription className='text-[12px] mb-8'>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <div className='h-[200px]'>

@@ -529,8 +529,8 @@ const Partnership = () => {
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
-            <CardTitle className="text-md">Partner Contributions</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
+            <CardTitle className="text-lg">Partner Contributions</CardTitle>
+            <CardDescription className='text-[12px]'>January - June 2024</CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
@@ -579,7 +579,7 @@ const Partnership = () => {
         {/* Partner Settings Table */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-md">Partner Settings</CardTitle>
+            <CardTitle className="text-lg">Partner Settings</CardTitle>
             <CardDescription className="text-[12px]">
               Adjust partner access and privacy settings.
             </CardDescription>

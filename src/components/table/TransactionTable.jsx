@@ -431,7 +431,7 @@ export function TransactionTable() {
       <div className='text-2xl font-medium mt-5 dark:text-white'>
         Transactions
       </div>
-      <p className='text-muted-foreground dark:text-white/50'>
+      <p className="text-sm text-gray-600 dark:text-gray-400">
         Monitor and manage your recurring expenses efficiently.
       </p>
 

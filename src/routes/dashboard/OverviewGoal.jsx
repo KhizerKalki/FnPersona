@@ -263,7 +263,7 @@ const OverviewGoal = () => {
         <div className='text-2xl font-medium dark:text-white'>
           Your Financial Goals
         </div>
-        <p className='text-muted-foreground dark:text-white/50'>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           "The journey of a thousand miles begins with one step." - Lao Tzu
         </p>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4'>
@@ -318,11 +318,11 @@ const OverviewGoal = () => {
 
       {/* Goal Impact Analysis Section */}
       <div className='mt-12'>
-        <h2 className='text-2xl font-semibold dark:text-white'>
+        <h2 className='text-2xl font-medium dark:text-white'>
           Goal Impact Analysis
         </h2>
         <div className='mt-4'>
-          <p className='dark:text-white'>
+          <p className='text-sm text-gray-600 dark:text-gray-400'>
             Analyzing the impact of your financial goals on your overall net
             worth helps you stay on track and make informed decisions.
           </p>
