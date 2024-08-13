@@ -8,6 +8,7 @@ import {
   BriefcaseBusinessIcon,
   Calculator,
   UsersIcon,
+  Mail
 } from "lucide-react";
 import {
   Tooltip,
@@ -163,6 +164,19 @@ function Sidebar() {
               </NavLink>
             </TooltipTrigger>
             <TooltipContent side="right">Manage Partnership</TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <NavLink
+                to="/contact"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <Mail className="h-5 w-5 activebutton" />
+                <span className="sr-only">Contact Us</span>
+              </NavLink>
+            </TooltipTrigger>
+            <TooltipContent side="right">Contact Us</TooltipContent>
           </Tooltip>
         </nav>
         <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">

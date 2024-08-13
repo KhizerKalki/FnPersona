@@ -1,7 +1,6 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/CustomInput/Input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
+import { Label } from "@/components/CustomInput/Label";
 import Spline from "@splinetool/react-spline";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
@@ -54,22 +53,31 @@ export default function Contact() {
     });
   };
 
+  const BottomGradient = () => {
+    return (
+      <>
+        <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+      </>
+    );
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-50 dark:bg-black overflow-hidden">
       {/* Spline background */}
       <div
         className="absolute inset-0 z-0"
         style={{
-          height: "900px",
-          transform: "translateX(-5%) translateY(-5%) scaleX(1.6) scaleY(1.5)",
+          height: "1200px",
+          transform: "translateX(-1%) translateY(-15%) scale(1)",
         }}
       >
-        <Spline scene="https://prod.spline.design/BejJBEBM7q5W2FKv/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/bi0QpAoYBbXUaV-B/scene.splinecode" />
         <div className="absolute inset-0"></div>
       </div>
 
       {/* Contact form and details */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 backdrop-blur-md rounded-md shadow-lg w-3/4 mt-20 border border-black dark:border-white">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 backdrop-blur-md rounded-md shadow-lg w-3/4 mt-24 mb-8 border border-gray-200 dark:border-gray-800">
         {/* Contact form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-3xl font-bold text-black dark:text-white">
@@ -84,8 +92,6 @@ export default function Contact() {
             </Label>
             <Input
               id="name"
-              className="border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-sm text-gray-900 dark:text-gray-100 w-full"
-              placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
               required
@@ -101,8 +107,7 @@ export default function Contact() {
             <div className="relative">
               <Input
                 id="email"
-                className="border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-sm text-gray-900 dark:text-gray-100 w-full"
-                placeholder="Enter your email"
+                placeholder="mail@example.com"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -119,8 +124,6 @@ export default function Contact() {
             <div className="relative">
               <Input
                 id="phone"
-                className="border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-sm text-gray-900 dark:text-gray-100 w-full"
-                placeholder="Enter your phone number"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -134,16 +137,16 @@ export default function Contact() {
             >
               Message
             </Label>
-            <textarea
+            <Input
               id="message"
-              className="dark:border-custom-border rounded-md border border-1 bg-white dark:bg-black text-sm text-gray-900 dark:text-gray-100 w-full p-2 rounded-md"
-              placeholder="Type your message"
               value={formData.message}
               onChange={handleChange}
               required
-              rows={5}
+              className="rows-10"
+              as="textarea"
             />
           </div>
+
           <div className="flex items-center space-x-2">
             <Checkbox
               id="agreement"
@@ -162,29 +165,21 @@ export default function Contact() {
               </button>
             </Label>
           </div>
-          <Button
+          <button
             type="submit"
-            className="w-full bg-gradient-to-br from-black dark:from-neutral-500 dark:to-black to-neutral-600 text-sm dark:text-white py-2 rounded-md"
+            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           >
+            {" "}
             Submit
-          </Button>
+            <BottomGradient />
+          </button>
         </form>
         {/* Contact details */}
         <div className="hidden lg:flex flex-col justify-center items-center space-y-12 text-gray-600 dark:text-gray-400">
-          <div className="flex flex-col items-center space-y-4">
-            <FaPhone className="text-black dark:text-gray-300 w-28 h-28" />
-            <span className="text-black dark:text-gray-300">987654321</span>
-          </div>
-          <div className="flex flex-col items-center space-y-4">
-            <FaEnvelope className="text-black dark:text-gray-300 w-28 h-28" />
-            <span className="text-black dark:text-gray-300">abc@.gmailcom</span>
-          </div>
-          <div className="flex space-x-4 mt-4">
-            <FaFacebook className="hover:text-blue-600 text-black dark:text-white transition-colors duration-200 w-8 h-8" />
-            <FaTwitter className="hover:text-blue-400 text-black dark:text-white transition-colors duration-200 w-8 h-8" />
-            <FaLinkedin className="hover:text-blue-700 text-black dark:text-white transition-colors duration-200 w-8 h-8" />
-            <FaInstagram className="hover:text-pink-500 text-black dark:text-white transition-colors duration-200 w-8 h-8" />
-          </div>
+          <Spline
+            scene="https://prod.spline.design/wpCIkYAZKex9pnDe/scene.splinecode"
+            style={{ transform: "translateY(2.5%) scale(1)" }}
+          />
         </div>
       </div>
     </div>

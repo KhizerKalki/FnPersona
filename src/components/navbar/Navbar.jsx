@@ -59,6 +59,12 @@ const Navbar = () => {
             >
               Services
             </Link>
+            <Link
+              to='/contact'
+              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
+            >
+              Contact Us
+            </Link>
           </div>
         </div>
         <nav className='hidden gap-6 text-sm font-medium md:flex items-center'>
