@@ -78,7 +78,7 @@ const Investment = () => {
     <div className="container mx-auto my-5 px-4 md:px-8 lg:px-12">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         <header className="mb-4 md:mb-0">
-          <h1 className="text-3xl font-bold dark:text-white animate-fadeIn">
+          <h1 className="text-2xl font-medium dark:text-white animate-fadeIn">
             Investments
           </h1>
           <p className="text-muted-foreground dark:text-white/50 animate-fadeIn">

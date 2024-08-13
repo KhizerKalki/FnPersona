@@ -89,7 +89,7 @@ const Firecalculator = () => {
   return (
     <div className="container mt-6 py-8 px-4 md:px-6">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold dark:text-white animate-fadeIn">FIRE Calculator</h1>
+        <h1 className="text-2xl font-medium dark:text-white animate-fadeIn">FIRE Calculator</h1>
         <p className="text-muted-foreground dark:text-white/50 animate-fadeIn">
           Calculate your path to Financial Independence and Early Retirement.
         </p>
@@ -165,7 +165,7 @@ const Firecalculator = () => {
                       data={projections.graphData}
                       margin={{ top: 24, left: 24, right: 24 }}
                     >
-                      <CartesianGrid vertical={false} />
+                      <CartesianGrid vertical={false}  stroke='rgba(255, 255, 255, 0.1)' />
                       <ChartTooltip
                         cursor={false}
                         content={

@@ -260,9 +260,9 @@ const OverviewGoal = () => {
     <div className='container mt-6 py-8 px-4 md:px-6'>
       {/* Overview Section */}
       <div className='mb-8'>
-        <h2 className='text-2xl font-semibold dark:text-white'>
+        <div className='text-2xl font-medium dark:text-white'>
           Your Financial Goals
-        </h2>
+        </div>
         <p className='text-muted-foreground dark:text-white/50'>
           "The journey of a thousand miles begins with one step." - Lao Tzu
         </p>

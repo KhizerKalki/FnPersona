@@ -217,7 +217,7 @@ export function RecurringExpenses() {
     <div className="container  py-8 px-4 md:px-6">
       <div className="mb-8 flex flex-col md:flex-row justify-between items-center">
         <header className="mb-8 md:mb-0">
-          <h1 className="text-2xl font-bold dark:text-white">
+          <h1 className="text-2xl font-medium dark:text-white">
             Recurring Expenses
           </h1>
           <p className="text-muted-foreground dark:text-white/50">

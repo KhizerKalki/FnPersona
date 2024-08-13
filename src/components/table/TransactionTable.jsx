@@ -428,7 +428,7 @@ export function TransactionTable() {
 
   return (
     <div className='w-full container'>
-      <div className='text-2xl font-semibold mt-5 dark:text-white'>
+      <div className='text-2xl font-medium mt-5 dark:text-white'>
         Transactions
       </div>
       <p className='text-muted-foreground dark:text-white/50'>
