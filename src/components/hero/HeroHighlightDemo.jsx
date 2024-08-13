@@ -36,15 +36,13 @@ const HeroHighlight = ({ children, className, containerClassName }) => {
               200px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
-            )
-          `,
+            )`,
           maskImage: useMotionTemplate`
             radial-gradient(
               200px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
-            )
-          `,
+            )`,
         }}
       />
 
@@ -73,7 +71,7 @@ const Highlight = ({ children, className }) => {
         display: "inline",
       }}
       className={cn(
-        `relative inline-block pb-1 px-4 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500`,
+        "relative inline-block pb-1 px-4 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500",
         className
       )}
     >
@@ -81,7 +79,6 @@ const Highlight = ({ children, className }) => {
     </motion.span>
   );
 };
-
 
 const HeroHighlightDemo = () => {
   return (
@@ -99,9 +96,13 @@ const HeroHighlightDemo = () => {
           duration: 0.5,
           ease: [0.4, 0.0, 0.2, 1],
         }}
-        className="text-md px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto"
+        className="text-lg sm:text-xl md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto"
       >
-         With us on your side, <span className='whitespace-nowrap'> you can forget about financial worries.</span><br />
+        With us on your side,{" "}
+        <span className="whitespace-nowrap">
+          you can forget about financial worries.
+        </span>
+        <br />
         <Highlight className="text-black dark:text-white">
           Hop on our team
         </Highlight>
