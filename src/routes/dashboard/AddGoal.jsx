@@ -264,9 +264,9 @@ return (
     <div className='container mt-6 py-8 px-4 md:px-6'>
     <div className='mb-8 flex flex-col md:flex-row justify-between items-center'>
         <header className='mb-8 md:mb-0'>
-        <h1 className='text-3xl font-bold dark:text-white'>
+        <div className='text-2xl font-medium dark:text-white'>
             Financial Goals
-        </h1>
+        </div>
         <p className='text-muted-foreground dark:text-white/50'>
             Set and track your financial goals.
         </p>

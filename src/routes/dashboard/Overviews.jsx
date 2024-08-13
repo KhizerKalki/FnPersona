@@ -12,7 +12,7 @@ const Overviews = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between">
         <div>
-          <div className="text-2xl font-semibold mt-5 dark:text-white">
+          <div className="text-2xl font-medium mt-5 dark:text-white">
             Budget Overview
           </div>
           <p className="text-muted-foreground mb-4 mt-1 dark:text-white/50">
