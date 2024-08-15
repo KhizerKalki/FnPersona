@@ -169,7 +169,7 @@ export default function Contact() {
         {/* Contact details */}
         <div className="hidden lg:flex flex-col justify-center items-center space-y-12 text-gray-600 dark:text-gray-400">
 
-           <Spline scene="https://prod.spline.design/2uaGd9F8XFKf-no5/scene.splinecode"
+           <Spline scene="https://prod.spline.design/fccLS2LT1RcITHcn/scene.splinecode"
             style={{ transform: "translateY(2.5%) scale(0.8)" }}
           />
         </div>

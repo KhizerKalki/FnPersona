@@ -59,6 +59,7 @@ const router = createBrowserRouter(
           <Route path="recurring" element={<Recurring />} />
           <Route path="partnership" element={<Partnership />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="retirement" element={<Firecalculator />} />
         </Route>
       </Route>
