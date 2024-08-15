@@ -86,7 +86,7 @@ export default function Contact() {
           <div className="space-y-2">
             <Label
               htmlFor="name"
-              className="text-base text-black dark:text-gray-300"
+              className="text-sm text-black dark:text-gray-300"
             >
               Name
             </Label>
@@ -100,7 +100,7 @@ export default function Contact() {
           <div className="space-y-2">
             <Label
               htmlFor="email"
-              className="text-base text-black dark:text-gray-300"
+              className="text-sm text-black dark:text-gray-300"
             >
               Email
             </Label>
@@ -117,7 +117,7 @@ export default function Contact() {
           <div className="space-y-2">
             <Label
               htmlFor="phone"
-              className="text-base text-black dark:text-gray-300"
+              className="text-sm text-black dark:text-gray-300"
             >
               Phone Number
             </Label>
@@ -133,7 +133,7 @@ export default function Contact() {
           <div className="space-y-2">
             <Label
               htmlFor="message"
-              className="text-base text-black dark:text-gray-300"
+              className="text-sm text-black dark:text-gray-300"
             >
               Message
             </Label>
@@ -176,6 +176,7 @@ export default function Contact() {
         </form>
         {/* Contact details */}
         <div className="hidden lg:flex flex-col justify-center items-center space-y-12 text-gray-600 dark:text-gray-400">
+
            <Spline scene="https://prod.spline.design/2uaGd9F8XFKf-no5/scene.splinecode"
             style={{ transform: "translateY(2.5%) scale(0.8)" }}
           />
