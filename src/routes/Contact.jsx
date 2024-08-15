@@ -176,9 +176,8 @@ export default function Contact() {
         </form>
         {/* Contact details */}
         <div className="hidden lg:flex flex-col justify-center items-center space-y-12 text-gray-600 dark:text-gray-400">
-          <Spline
-            scene="https://prod.spline.design/wpCIkYAZKex9pnDe/scene.splinecode"
-            style={{ transform: "translateY(2.5%) scale(1)" }}
+           <Spline scene="https://prod.spline.design/2uaGd9F8XFKf-no5/scene.splinecode"
+            style={{ transform: "translateY(2.5%) scale(0.8)" }}
           />
         </div>
       </div>
