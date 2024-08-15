@@ -273,7 +273,7 @@ const Tabs = ({
                 )}
               />
             )}
-            <span className='relative block text-xs sm:text-sm md:text-base lg:text-lg text-black dark:text-white'>
+            <span className='relative block text-xs sm:text-sm md:text-base lg:text-lg text-black dark:text-white '>
               {tab.title}
             </span>
           </button>

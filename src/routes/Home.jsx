@@ -3,6 +3,7 @@ import { InfiniteMovingCardsDemo } from '@/components/testimonial/InfiniteMoving
 import { Hero } from '@/components/hero/Hero';
 import HeroHighlightDemo from '@/components/hero/HeroHighlightDemo';
 import {TabsDemo} from '@/components/tabs/TabsDemo'
+import { FeaturesSection } from '@/components/features/FeaturesSection';
 const Home = () => {
   return (
     <div className=''>
@@ -10,6 +11,7 @@ const Home = () => {
       <BentoGridThirdDemo />
       <TabsDemo />
       <HeroHighlightDemo />
+      <FeaturesSection />
       <InfiniteMovingCardsDemo />
     </div>
   );
