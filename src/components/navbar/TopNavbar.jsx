@@ -11,6 +11,7 @@ import {
   Settings,
   Calculator,
   UsersIcon,
+  HelpCircle
 } from 'lucide-react';
 import {
   Breadcrumb,
@@ -189,6 +190,15 @@ function TopNavbar() {
             >
               <Calculator className='h-5 w-5' />
               Retirement Planner
+            </Link>
+
+            <Link
+              to='/dashboard/contact'
+              className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground dark:text-white'
+              onClick={handleLinkClick}
+            >
+              <HelpCircle className='h-5 w-5' />
+              Contact Us
             </Link>
 
             <Link

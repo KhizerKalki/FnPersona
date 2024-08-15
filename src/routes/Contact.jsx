@@ -4,14 +4,6 @@ import { Label } from "@/components/CustomInput/Label";
 import Spline from "@splinetool/react-spline";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import {
-  FaPhone,
-  FaEnvelope,
-  FaLinkedin,
-  FaTwitter,
-  FaFacebook,
-  FaInstagram,
-} from "react-icons/fa";
 
 export default function Contact() {
   const { toast } = useToast();
