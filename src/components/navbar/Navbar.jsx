@@ -46,19 +46,7 @@ const Navbar = () => {
               className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
             >
               Home
-            </Link>
-            <Link
-              to='/about'
-              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
-            >
-              About
-            </Link>
-            <Link
-              to='/services'
-              className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'
-            >
-              Services
-            </Link>
+            </Link>          
             <Link
               to='/contact'
               className='hover:underline hover:underline-offset-4 text-sm dark:text-[#888888] font-medium text-gray-500'

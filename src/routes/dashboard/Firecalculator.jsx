@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { LineChart, Line, CartesianGrid, Dot } from 'recharts';
+import { LineChart, Line, CartesianGrid, Dot, XAxis } from 'recharts';
 import { TrendingUp } from "lucide-react";
 import {
   CardDescription,
@@ -156,8 +156,8 @@ const Firecalculator = () => {
             <div className="w-full">
               <Card className="h-[500px]">
                 <CardHeader>
-                <CardTitle className='text-lg' >Investment Growth</CardTitle>
-                <CardDescription className='text-[12px]'>Projection over time</CardDescription>
+                  <CardTitle className='text-lg' >Investment Growth</CardTitle>
+                  <CardDescription className='text-[12px]'>Projection over time</CardDescription>
                 </CardHeader>
                 <CardContent className="h-[310px]">
                   <ChartContainer config={chartConfig} className="h-[260px] w-full">
@@ -166,6 +166,11 @@ const Firecalculator = () => {
                       margin={{ top: 24, left: 24, right: 24 }}
                     >
                       <CartesianGrid vertical={false}  stroke='rgba(255, 255, 255, 0.1)' />
+                      <XAxis
+                        dataKey="age"
+                        tickLine={false}
+                        axisLine={false}
+                      />
                       <ChartTooltip
                         cursor={false}
                         content={
@@ -190,7 +195,6 @@ const Firecalculator = () => {
                               cy={props.cy}
                               fill= "#a3a3a3"
                               stroke={payload.fill}
-                              
                             />
                           );
                         }}
@@ -209,39 +213,36 @@ const Firecalculator = () => {
               </Card>
             </div>
             <Card className='px-8 py-6'>
-            <div className="w-full">
-            <CardTitle className='text-lg dark:text-white mb-2' >Investment Growth Table</CardTitle>
-            <CardDescription className='text-[12px] mb-7'>Table view</CardDescription>
-            <table className="w-full border-collapse border border-gray-200 dark:border-gray-700">
-                <thead>
-                  <tr className="bg-gray-100 dark:bg-gray-700 ">
-                    <th className="border border-gray-200 dark:border-gray-700 px-4 py-1 text-left dark:text-white">Age</th>
-                    <th className="border border-gray-200 dark:border-gray-700 px-4  py-1 text-left dark:text-white">Investment Value ($)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projections.tableData.map((row, index) => (
-                    <tr key={index} className="even:bg-gray-100 dark:even:bg-gray-800">
-                      <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 dark:text-white">{row.age}</td>
-                      <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 dark:text-white">${row.investment.toLocaleString()}</td>
+              <div className="w-full">
+                <CardTitle className='text-lg dark:text-white mb-2' >Investment Growth Table</CardTitle>
+                <CardDescription className='text-[12px] mb-7'>Table view</CardDescription>
+                <table className="w-full border-collapse border border-gray-200 dark:border-gray-700">
+                  <thead>
+                    <tr className="bg-gray-100 dark:bg-gray-700 ">
+                      <th className="border border-gray-200 dark:border-gray-700 px-4 py-1 text-left dark:text-white">Age</th>
+                      <th className="border border-gray-200 dark:border-gray-700 px-4  py-1 text-left dark:text-white">Investment Value ($)</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-
-            
-              
-            </div>
+                  </thead>
+                  <tbody>
+                    {projections.tableData.map((row, index) => (
+                      <tr key={index} className="even:bg-gray-100 dark:even:bg-gray-800">
+                        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 dark:text-white">{row.age}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 px-4 py-2 dark:text-white">${row.investment.toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table> 
+              </div>
             </Card>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          <Card className="col-span-1">
+            <Card className="col-span-1">
               <CardContent>
                 <div className='px-2 py-5 rounded-lg shadow-lg text-black dark:text-white'>
                   <div className='flex flex-col sm:flex-row justify-between w-full'>
                     <div className='w-full flex flex-col sm:pr-2 mb-4 sm:mb-0'>
                       <div className='border-b border-gray-900 dark:border-gray-300 pb-3 mb-3'>
-                      <CardTitle className='text-lg' >Notifications</CardTitle>
+                        <CardTitle className='text-lg' >Notifications</CardTitle>
                       </div>
                       <div className='flex flex-col gap-3'>
                         <div className='relative p-3 rounded bg-gray-100 dark:bg-gray-800 shadow-md border-l-4 border-green-500 flex justify-between items-center transition-transform transform hover:scale-105'>

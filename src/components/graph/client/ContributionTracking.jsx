@@ -137,15 +137,16 @@ const ContributionTracking = ({ partners, monthlyContributions }) => {
                       right: 12,
                     }}
                   >
-                    <CartesianGrid vertical={false} />
+                    <CartesianGrid vertical={false} stroke='rgba(255, 255, 255, 0.1)' />
                     <XAxis
                       dataKey='month'
                       tickLine={false}
                       axisLine={false}
                       tickMargin={8}
                       tickFormatter={(value) => value.slice(0, 3)}
+                      
                     />
-                    <YAxis />
+                    <YAxis stroke='rgba(255, 255, 255, 0.1)' />
                     <ChartTooltip
                       cursor={false}
                       content={<ChartTooltipContent />}
