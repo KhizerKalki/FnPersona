@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Label } from '@/components/CustomInput/Label';
 import { Input } from '@/components/CustomInput/Input';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useAuth } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { useToast } from '@/components/ui/use-toast';
 import Spline from '@splinetool/react-spline';
@@ -13,20 +12,14 @@ import Spline from '@splinetool/react-spline';
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  
-
-  const { login } = useAuth();
+  const { login } = useAuth(); // Retrieve login function from context
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/dashboard/lobby');
-    }, 1000);
+    setLoading(false);
+    navigate('/dashboard/lobby'); // Redirect to dashboard
   };
 
   const handleLoginSuccess = (credentialResponse) => {
@@ -36,48 +29,31 @@ export function SignIn() {
     handleNavigate();
   };
 
-  const handleLoginError = () => {
-    console.log('Login Failed');
-    setLoading(false);
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError('Please enter a valid email address.');
-      toast({
-        variant: 'destructive',
-        title: 'Invalid Email',
-        description: 'Please enter a valid email address.',
-      });
-      return false;
-    }
-    setEmailError('');
-    return true;
-  };
-
-  const validatePassword = (password) => {
-    if (password.length < 6) {
-      toast({
-        variant: 'destructive',
-        title: 'Invalid Password',
-        description: 'Password must be at least 6 characters long.',
-      });
-      setPasswordError('Password must be at least 6 characters long.');
-      return false;
-    }
-    setPasswordError('');
-    return true;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
-    if (isEmailValid && isPasswordValid) {
-      setLoading(true);
-      login({ email });
-      handleNavigate();
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:5000/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        localStorage.setItem('token', data.token); // Store the JWT token in localStorage
+        login(data); // Set user state
+        toast({ title: 'Login successful!' });
+        handleNavigate(); // Redirect to dashboard
+      } else {
+        toast({ variant: 'destructive', title: 'Error', description: data.message });
+      }
+    } catch (error) {
+      toast({ variant: 'destructive', title: 'Login failed', description: 'An error occurred' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -105,7 +81,6 @@ export function SignIn() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={() => validateEmail(email)}
                 />
               </LabelInputContainer>
             </div>
@@ -125,7 +100,6 @@ export function SignIn() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onBlur={() => validatePassword(password)}
               />
             </div>
             {loading && <Loader />}
@@ -139,7 +113,7 @@ export function SignIn() {
             <GoogleLogin
               width={325}
               onSuccess={handleLoginSuccess}
-              onError={handleLoginError}
+              onError={() => setLoading(false)}
             />
           </div>
           <div className='mt-4 text-center text-sm'>
@@ -151,16 +125,7 @@ export function SignIn() {
         </form>
       </div>
       <div className='hidden lg:block bg-muted'>
-        {/* <img
-          src={svg}
-          alt='Image'
-          width='1920'
-          height='1080'
-          className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
-        /> */}
-       <Spline
-        scene="https://prod.spline.design/u5QTbeQqEBltnLMw/scene.splinecode" 
-      />
+        <Spline scene="https://prod.spline.design/u5QTbeQqEBltnLMw/scene.splinecode" />
       </div>
     </div>
   );
